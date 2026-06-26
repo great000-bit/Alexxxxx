@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/*
+ * Design system tokens — deep navy / emerald, per the PRD's visual identity.
+ * Tailwind v4 is CSS-first: tokens defined here become usable as utility classes
+ * automatically (e.g. --color-navy becomes bg-navy, text-navy, border-navy, etc.)
+ */
+@theme {
+  /* Primary — deep navy, the main authority/background colour */
+  --color-navy-950: #050b14;
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f2138;
+  --color-navy-700: #16304d;
+
+  /* Accent — emerald green, the main CTA/highlight colour */
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+  --color-emerald-300: #6ee7b7;
+
+  /* Supporting */
+  --color-charcoal: #1c1f24;
+  --color-grey-50: #f7f8f9;
+  --color-grey-100: #eef0f2;
+  --color-grey-200: #dde1e5;
+  --color-grey-400: #9aa3ad;
+  --color-grey-600: #5b6470;
+  --color-blue-grey: #e4ebf0;
+
+  /* Fonts */
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-inter);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-charcoal antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  /* Visible keyboard focus everywhere, per the PRD's accessibility requirements. */
+  :focus-visible {
+    outline: 2px solid var(--color-emerald-500);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
