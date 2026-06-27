@@ -34,7 +34,7 @@ export default async function InsightDetailPage({
 
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <Link
             href="/insights"
@@ -54,8 +54,8 @@ export default async function InsightDetailPage({
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <p className="text-lg text-grey-600 leading-relaxed mb-8">{post.excerpt}</p>
           {post.isPlaceholder && (
             <div className="rounded-lg border border-dashed border-grey-200 bg-grey-50 p-8 text-center">

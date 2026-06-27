@@ -31,13 +31,43 @@
   --color-blue-grey: #e4ebf0;
 
   /* Fonts */
-  --font-heading: var(--font-montserrat);
-  --font-body: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-montserrat);
+  /* TODO: Nevera font file does not exist in this project yet. This falls back to
+     Space Grotesk (closest available premium geometric feel) rather than failing the
+     build or silently falling back to a generic system font. Once a real Nevera font
+     file is provided, add it via next/font/local (see Next.js docs on local fonts) and
+     set --font-logo to that loaded font's CSS variable instead of this fallback chain. */
+  --font-logo: var(--font-space-grotesk), "Nevera", serif;
 
   /* Mature, restrained entrance animation for the nav — fades down softly on initial
      paint. Pure CSS (runs automatically, no React state/JS needed), per the nav/hero
      rebuild brief's instruction not to add an animation library just for this. */
   --animate-nav-reveal: nav-reveal 0.7s ease-out both;
+
+  /* Very slow, large-scale drift for the global background's CSS fallback gradients —
+     deliberately long durations (40-50s) and small movement range so the motion reads
+     as "subtle atmospheric energy flow" rather than anything fast or distracting. */
+  --animate-energy-drift-a: energy-drift-a 42s ease-in-out infinite;
+  --animate-energy-drift-b: energy-drift-b 50s ease-in-out infinite;
+}
+
+@keyframes energy-drift-a {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 4%) scale(1.08);
+  }
+}
+
+@keyframes energy-drift-b {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-5%, -6%) scale(1.06);
+  }
 }
 
 @keyframes nav-reveal {
@@ -57,7 +87,12 @@
   }
 
   body {
-    @apply bg-white text-charcoal antialiased;
+    @apply text-charcoal antialiased;
+    /* Transparent so GlobalEnergyBackground (mounted once in layout.tsx, fixed behind
+       everything) shows through on every page. Do not reintroduce an opaque body
+       background — that was correct under the previous brief, before a global
+       background system existed; this is the intentional new state. */
+    background-color: transparent;
     font-family: var(--font-body);
   }
 

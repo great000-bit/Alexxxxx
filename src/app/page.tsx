@@ -52,8 +52,8 @@ export default function Home() {
       <CredibilityBar />
 
       {/* Strategic intro */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="max-w-3xl">
             <SectionHeading eyebrow="About" title="A research-backed perspective on the energy transition" />
             <p className="mt-5 text-base text-grey-600 leading-relaxed">{bio.short}</p>
@@ -69,8 +69,8 @@ export default function Home() {
       </section>
 
       {/* What Alexander helps with */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="How I Help" title="What Alexander helps with" align="center" />
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {helpsWith.map((item) => (
@@ -85,8 +85,8 @@ export default function Home() {
       </section>
 
       {/* Featured expertise */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <SectionHeading eyebrow="Expertise" title="Areas of deep technical expertise" />
             <Link href="/expertise" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
@@ -103,8 +103,8 @@ export default function Home() {
       </section>
 
       {/* Featured projects */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <SectionHeading eyebrow="Selected Work" title="Featured projects" />
             <Link href="/projects" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
@@ -121,8 +121,8 @@ export default function Home() {
       </section>
 
       {/* Research & publications preview */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <SectionHeading
               eyebrow="Research"
@@ -143,7 +143,7 @@ export default function Home() {
       </section>
 
       {/* Leadership & social impact preview */}
-      <section className="bg-navy-900 py-16 lg:py-20">
+      <section className="bg-navy-900/80 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -177,8 +177,8 @@ export default function Home() {
       </section>
 
       {/* Speaking & media preview */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="rounded-xl border border-grey-200 bg-grey-50 p-10 text-center">
             <SectionHeading
               eyebrow="Speaking & Media"
@@ -198,8 +198,8 @@ export default function Home() {
       </section>
 
       {/* Insights preview */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <SectionHeading eyebrow="Insights" title="Thinking on hydrogen, net zero, and sustainability" />
             <Link href="/insights" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">

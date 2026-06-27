@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 // a real contact form backend collects and stores submitted data.
 export default function PrivacyPage() {
   return (
-    <section className="bg-white py-16 lg:py-20">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
+    <section className="py-16 lg:py-20">
+      <div className="mx-auto max-w-3xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
         <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-navy-950 mb-8">
           Privacy Policy
         </h1>

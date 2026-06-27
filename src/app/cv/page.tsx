@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 //   <a href="/alexander-oburoh-cv.pdf" download className="...">Download CV (PDF)</a>
 export default function CVPage() {
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-2xl px-6 lg:px-8 text-center">
+    <section className="py-20">
+      <div className="mx-auto max-w-2xl px-6 lg:px-8 text-center rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
         <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-navy-950 mb-4">
           CV coming soon
         </h1>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function ImpactPage() {
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">Leadership & Social Impact</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -27,8 +27,8 @@ export default function ImpactPage() {
       </section>
 
       {/* VolunteerNG feature */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Main Feature" title={`${volunteerNG.role}, ${volunteerNG.organisation}`} />
           <ul className="mt-8 space-y-4">
             {volunteerNG.contributions.map((item) => (
@@ -42,8 +42,8 @@ export default function ImpactPage() {
       </section>
 
       {/* Community leadership */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Community Leadership" title="Additional community contributions" />
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {communityLeadership.map((item) => (
@@ -54,8 +54,8 @@ export default function ImpactPage() {
       </section>
 
       {/* Tone note: warm but still premium, per PRD */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <p className="text-base text-grey-600 leading-relaxed">
             Alexander believes technical expertise and community impact reinforce each other — sustainable
             energy transition depends not only on sound research and policy, but on the people, partnerships,

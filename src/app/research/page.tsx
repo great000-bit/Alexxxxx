@@ -22,7 +22,7 @@ const profileLinks = [
 export default function ResearchPage() {
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">Research</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -36,8 +36,8 @@ export default function ResearchPage() {
       </section>
 
       {/* Research focus */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Research Focus" title="Areas of research interest" />
           <div className="mt-6 flex flex-wrap gap-2">
             {researchFocusAreas.map((area) => (
@@ -50,8 +50,8 @@ export default function ResearchPage() {
       </section>
 
       {/* Featured research */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Featured Research" title="PhD Research: Blue Hydrogen and the UK Net Zero Transition" />
           <p className="mt-5 text-base text-grey-600 leading-relaxed max-w-2xl">
             Alexander&apos;s PhD at Robert Gordon University examined the role blue hydrogen could play in
@@ -62,8 +62,8 @@ export default function ResearchPage() {
       </section>
 
       {/* Publications */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading
             eyebrow="Publications"
             title="Publications and research outputs"
@@ -81,8 +81,8 @@ export default function ResearchPage() {
       </section>
 
       {/* Research profiles */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Profiles" title="Research profiles" />
           <div className="mt-6 flex flex-wrap gap-4">
             {profileLinks.map((link) => (

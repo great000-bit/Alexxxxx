@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function SpeakingPage() {
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">Speaking & Media</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -28,8 +28,8 @@ export default function SpeakingPage() {
       </section>
 
       {/* Speaking topics */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Topics" title="Speaking topics" />
           <div className="mt-6 flex flex-wrap gap-2">
             {speakingTopics.map((topic) => (
@@ -42,8 +42,8 @@ export default function SpeakingPage() {
       </section>
 
       {/* Selected talks / conferences - future ready */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Selected Talks" title="Conferences, workshops & panels" />
           <div className="mt-8 rounded-lg border border-dashed border-grey-200 bg-white p-8 text-center">
             <p className="text-sm text-grey-600">
@@ -54,8 +54,8 @@ export default function SpeakingPage() {
       </section>
 
       {/* Media enquiries */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Media" title="Media enquiries" />
           <p className="mt-5 text-base text-grey-600 leading-relaxed mb-6">
             For media enquiries, commentary requests, or speaking invitations, get in touch directly.

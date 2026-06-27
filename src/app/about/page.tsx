@@ -47,7 +47,7 @@ const focusAreas = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">About</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -61,8 +61,8 @@ export default function AboutPage() {
       </section>
 
       {/* Professional bio */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="space-y-5">
             {bio.full.map((paragraph) => (
               <p key={paragraph.slice(0, 30)} className="text-base text-grey-600 leading-relaxed">
@@ -74,8 +74,8 @@ export default function AboutPage() {
       </section>
 
       {/* Career / research journey */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Journey" title="Career & research journey" />
           <div className="mt-10 space-y-8">
             {journey.map((item, i) => (
@@ -95,8 +95,8 @@ export default function AboutPage() {
       </section>
 
       {/* Areas of focus */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Focus" title="Areas of focus" />
           <div className="mt-8 flex flex-wrap gap-3">
             {focusAreas.map((area) => (
@@ -112,8 +112,8 @@ export default function AboutPage() {
       </section>
 
       {/* Credentials */}
-      <section className="bg-grey-50 py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Credentials" title="Credentials" />
           <div className="mt-8 grid sm:grid-cols-2 gap-4">
             {credentials.map((c) => (
@@ -124,16 +124,16 @@ export default function AboutPage() {
       </section>
 
       {/* Beyond research */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <SectionHeading eyebrow="Beyond Research" title="Beyond the technical work" />
           <p className="mt-5 text-base text-grey-600 leading-relaxed">{bio.beyondResearch}</p>
         </div>
       </section>
 
       {/* CV CTA */}
-      <section className="bg-grey-50 py-16">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 flex flex-wrap gap-4">
+      <section className="py-16">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 flex flex-wrap gap-4 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <Link
             href="/cv"
             className="inline-flex items-center gap-2 rounded-md bg-navy-950 px-5 py-3 text-sm font-semibold text-white hover:bg-navy-800 transition-colors"

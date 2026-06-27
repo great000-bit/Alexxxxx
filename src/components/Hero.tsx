@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import HeroBackgroundVideo from "./HeroBackgroundVideo";
 import HeroPortraitFrame from "./HeroPortraitFrame";
 
 /**
@@ -41,15 +40,15 @@ function Reveal({
 
 export default function Hero() {
   return (
-    <section className="relative -mt-24 bg-navy-950 overflow-hidden">
-      <HeroBackgroundVideo />
+    // No per-hero video/background here anymore — GlobalEnergyBackground (mounted once
+    // in layout.tsx) now plays behind the entire site, hero included. This section is
+    // transparent so that shows through; it only adds its own light readability overlay
+    // on top, since the hero has the densest text over the most "open" stretch of video.
+    <section className="relative -mt-24 overflow-hidden">
+      <div className="absolute inset-0 bg-navy-950/35" aria-hidden="true" />
 
-      {/* Dark overlay between the video and the content, for readability — not a flat
-          page background, just enough contrast to keep text legible over the video. */}
-      <div className="absolute inset-0 bg-navy-950/55" aria-hidden="true" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pt-60 pb-20 lg:pt-68 lg:pb-28">
-        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-16 items-center">
+      <div className="relative mx-auto max-w-[1280px] px-6 lg:px-8 pt-60 pb-20 lg:pt-68 lg:pb-28 min-h-[calc(100vh-5rem)] flex items-center">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-16 items-center w-full">
           <div className="max-w-[620px]">
             <Reveal delayMs={0}>
               <div className="inline-flex items-center gap-2 mb-6">
@@ -58,13 +57,13 @@ export default function Hero() {
               </div>
             </Reveal>
 
-            <Reveal delayMs={80}>
+            <Reveal delayMs={90}>
               <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
                 Dr. Alexander Oburoh
               </h1>
             </Reveal>
 
-            <Reveal delayMs={160}>
+            <Reveal delayMs={180}>
               <p className="text-lg font-medium text-grey-200 leading-snug mb-6">
                 Sustainability &amp; Energy Systems Analyst
                 <br />
@@ -72,7 +71,7 @@ export default function Hero() {
               </p>
             </Reveal>
 
-            <Reveal delayMs={240}>
+            <Reveal delayMs={270}>
               <p className="text-base text-grey-200/90 leading-relaxed mb-9 max-w-xl">
                 Helping organisations make evidence-based decisions on hydrogen, carbon
                 management, and net-zero transition through research, policy analysis, life
@@ -80,24 +79,29 @@ export default function Hero() {
               </p>
             </Reveal>
 
-            <Reveal delayMs={320}>
+            <Reveal delayMs={360}>
               <div className="flex flex-wrap items-center gap-4">
+                {/* Primary: white background, deep navy text, subtle border, slight
+                    premium glow on hover only — per the CTA button style brief. */}
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-grey-100"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 border border-white/40 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)]"
                 >
                   Explore My Work
                   <span aria-hidden="true">→</span>
                 </Link>
+
+                {/* Secondary + third: glassmorphism — transparent white layer, subtle
+                    white border, backdrop blur, slight hover glow. No neon. */}
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/60"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
                 >
                   Get in Touch
                 </Link>
                 <Link
                   href="/cv"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/40"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-emerald-300/40 hover:shadow-[0_0_20px_rgba(110,231,183,0.12)]"
                 >
                   Download CV
                 </Link>
@@ -105,7 +109,7 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delayMs={200} className="hidden lg:block">
+          <Reveal delayMs={220} className="hidden lg:block">
             <HeroPortraitFrame />
           </Reveal>
         </div>
