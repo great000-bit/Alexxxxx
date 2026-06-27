@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SectionHeading from "@/components/SectionHeading";
 import ImpactCard from "@/components/ImpactCard";
 import CTASection from "@/components/CTASection";
+import ScrollReveal from "@/components/ScrollReveal";
 import { volunteerNG, communityLeadership } from "@/content/impact";
 
 export const metadata: Metadata = {
@@ -10,57 +11,76 @@ export const metadata: Metadata = {
     "Alexander Oburoh's leadership at VolunteerNG, supporting diaspora fundraising, education, and community development.",
 };
 
+const glassPanel = {
+  backgroundColor: "rgba(7,18,32,0.58)",
+  backdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+};
+
 export default function ImpactPage() {
   return (
     <>
       <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-400 mb-3">Leadership & Social Impact</p>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+            Leadership & Social Impact
+          </p>
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             Technical expertise, grounded in people
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
             Alexander combines technical expertise with leadership, education, mentorship, diaspora
             engagement, and community development.
           </p>
         </div>
       </section>
 
-      {/* VolunteerNG feature */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="Main Feature" title={`${volunteerNG.role}, ${volunteerNG.organisation}`} />
-          <ul className="mt-8 space-y-4">
-            {volunteerNG.contributions.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-base text-grey-600 leading-relaxed">
-                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* Split: VolunteerNG story on the left, glass stat/contribution cards on the right */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <ScrollReveal direction="left">
+              <SectionHeading eyebrow="Main Feature" title={`${volunteerNG.role}, ${volunteerNG.organisation}`} />
+              <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                Alexander believes technical expertise and community impact reinforce each other &mdash;
+                sustainable energy transition depends not only on sound research and policy, but on the
+                people, partnerships, and trust built along the way.
+              </p>
+            </ScrollReveal>
 
-      {/* Community leadership */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="Community Leadership" title="Additional community contributions" />
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {communityLeadership.map((item) => (
-              <ImpactCard key={item.title} title={item.title} description={item.description} />
-            ))}
+            <ScrollReveal direction="right" delayMs={120}>
+              <div className="rounded-2xl p-8" style={glassPanel}>
+                <ul className="space-y-4">
+                  {volunteerNG.contributions.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#5ac8a7" }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Tone note: warm but still premium, per PRD */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <p className="text-base text-grey-600 leading-relaxed">
-            Alexander believes technical expertise and community impact reinforce each other — sustainable
-            energy transition depends not only on sound research and policy, but on the people, partnerships,
-            and trust built along the way.
-          </p>
+      {/* Community leadership */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <SectionHeading eyebrow="Community Leadership" title="Additional community contributions" />
+          </ScrollReveal>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {communityLeadership.map((item, i) => (
+              <ScrollReveal key={item.title} delayMs={i * 90}>
+                <ImpactCard title={item.title} description={item.description} />
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

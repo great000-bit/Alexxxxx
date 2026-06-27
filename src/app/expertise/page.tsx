@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
+import ScrollReveal from "@/components/ScrollReveal";
 import { expertiseAreas } from "@/content/expertise";
 import { projects } from "@/content/projects";
 
@@ -11,66 +12,121 @@ export const metadata: Metadata = {
     "Alexander Oburoh's technical and advisory expertise across hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy.",
 };
 
+const glassPanel = {
+  backgroundColor: "rgba(7,18,32,0.58)",
+  backdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+};
+
 export default function ExpertisePage() {
   return (
     <>
       <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-400 mb-3">Expertise</p>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+            Expertise
+          </p>
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             Technical and advisory expertise
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
             Where Alexander&apos;s expertise can create value — across hydrogen, net-zero strategy, life
             cycle assessment, value chain analysis, and energy policy.
           </p>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 divide-y divide-grey-200 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          {expertiseAreas.map((area) => {
+      {/* Bento-style quick overview, jump links to the detailed anchors below */}
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {expertiseAreas.map((area, i) => (
+              <ScrollReveal
+                key={area.slug}
+                delayMs={(i % 4) * 90}
+                className={i % 5 === 0 ? "sm:col-span-2" : ""}
+              >
+                <a href={`#${area.slug}`} className="group block rounded-2xl p-6 h-full transition-transform duration-200 hover:-translate-y-1" style={glassPanel}>
+                  <span className="font-[family-name:var(--font-heading)] text-sm font-semibold" style={{ color: "#5ac8a7" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-sm font-semibold" style={{ color: "#f8fafc" }}>
+                    {area.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                    {area.shortDescription}
+                  </p>
+                </a>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed sections, one per area */}
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-6">
+          {expertiseAreas.map((area, i) => {
             const relatedProjects = projects.filter((p) => area.relatedProjectSlugs.includes(p.slug));
             return (
-              <article key={area.slug} id={area.slug} className="py-12 first:pt-0 scroll-mt-24">
-                <h2 className="text-2xl font-bold text-navy-950 mb-3">{area.title}</h2>
-                <p className="text-base text-grey-600 leading-relaxed mb-6 max-w-2xl">{area.description}</p>
+              <ScrollReveal key={area.slug} delayMs={Math.min(i, 4) * 60}>
+                <article id={area.slug} className="rounded-2xl p-8 sm:p-10 scroll-mt-24" style={glassPanel}>
+                  <h2
+                    className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-3"
+                    style={{ color: "#f8fafc" }}
+                  >
+                    {area.title}
+                  </h2>
+                  <p className="text-base leading-relaxed mb-6 max-w-2xl" style={{ color: "#cbd5e1" }}>
+                    {area.description}
+                  </p>
 
-                <p className="text-sm font-semibold text-navy-950 mb-3">Can support:</p>
-                <ul className="grid sm:grid-cols-2 gap-2 mb-6">
-                  {area.canHelpWith.map((item) => (
-                    <li key={item} className="text-sm text-grey-600 flex items-start gap-2">
-                      <span className="mt-1.5 w-1 h-1 rounded-full bg-emerald-500 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                  <p className="text-sm font-semibold mb-3" style={{ color: "#f8fafc" }}>
+                    Can support:
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-2 mb-6">
+                    {area.canHelpWith.map((item) => (
+                      <li key={item} className="text-sm flex items-start gap-2" style={{ color: "#cbd5e1" }}>
+                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: "#5ac8a7" }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-                {relatedProjects.length > 0 && (
-                  <div className="mb-6">
-                    <p className="text-sm font-semibold text-navy-950 mb-3">Related projects:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {relatedProjects.map((p) => (
-                        <Link
-                          key={p.slug}
-                          href={`/projects/${p.slug}`}
-                          className="text-sm px-3 py-1.5 rounded-full bg-grey-100 text-navy-700 hover:bg-blue-grey transition-colors"
-                        >
-                          {p.title}
-                        </Link>
-                      ))}
+                  {relatedProjects.length > 0 && (
+                    <div className="mb-6">
+                      <p className="text-sm font-semibold mb-3" style={{ color: "#f8fafc" }}>
+                        Related projects:
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {relatedProjects.map((p) => (
+                          <Link
+                            key={p.slug}
+                            href={`/projects/${p.slug}`}
+                            className="text-sm px-3 py-1.5 rounded-full transition-colors"
+                            style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#cbd5e1" }}
+                          >
+                            {p.title}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                <Link
-                  href={`/contact?enquiry=consulting&expertise=${area.slug}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-500"
-                >
-                  Discuss a {area.title} Project
-                  <ArrowRight size={14} aria-hidden="true" />
-                </Link>
-              </article>
+                  <Link
+                    href={`/contact?enquiry=consulting&expertise=${area.slug}`}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold"
+                    style={{ color: "#5ac8a7" }}
+                  >
+                    Discuss a {area.title} Project
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </article>
+              </ScrollReveal>
             );
           })}
         </div>

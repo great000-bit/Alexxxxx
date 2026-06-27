@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
+import ScrollReveal from "@/components/ScrollReveal";
 import { services } from "@/content/services";
 
 export const metadata: Metadata = {
@@ -14,22 +15,29 @@ export default function ServicesPage() {
     <>
       <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-400 mb-3">Services</p>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+            Services
+          </p>
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             Advisory and consulting services
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
             Practical support for organisations, consultancies, and research teams navigating sustainability,
             hydrogen, and net-zero challenges.
           </p>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <ServiceCard key={service.slug} service={service} />
+            {services.map((service, i) => (
+              <ScrollReveal key={service.slug} delayMs={(i % 3) * 110}>
+                <ServiceCard service={service} index={i} />
+              </ScrollReveal>
             ))}
           </div>
         </div>

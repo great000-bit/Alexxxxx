@@ -62,6 +62,17 @@ export const credentials = [
   },
 ] as const;
 
+// Flat strings for the credential marquee specifically — derived from `credentials`
+// above (title · detail) plus a few extra keyword entries the marquee brief asked for
+// that aren't full credential cards elsewhere on the site (About page's credential grid
+// uses the structured `credentials` array above; this is marquee-only).
+export const credentialMarqueeItems = [
+  ...credentials.map((c) => `${c.title} · ${c.detail}`),
+  "Energy Policy",
+  "Industrial Decarbonisation",
+  "Carbon Management",
+] as const;
+
 export const socials = {
   linkedin: "TODO-add-linkedin-url",
   googleScholar: "TODO-add-google-scholar-url",

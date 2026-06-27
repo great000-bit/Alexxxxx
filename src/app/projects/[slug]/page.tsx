@@ -41,97 +41,133 @@ export default async function ProjectDetailPage({
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm text-grey-400 hover:text-emerald-400 mb-6 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm mb-6 transition-colors"
+            style={{ color: "#94a3b8" }}
           >
             <ArrowLeft size={14} aria-hidden="true" />
             All projects
           </Link>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.category.map((tag) => (
-              <span key={tag} className="text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 text-emerald-300">
+              <span
+                key={tag}
+                className="text-xs font-medium px-2.5 py-1 rounded-full"
+                style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "#5ac8a7" }}
+              >
                 {tag}
               </span>
             ))}
           </div>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             {project.title}
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">{project.summary}</p>
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
+            {project.summary}
+          </p>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">Overview</h2>
-            <p className="text-base text-grey-600 leading-relaxed">{project.overview}</p>
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">
-              Problem / Context
-            </h2>
-            <p className="text-base text-grey-600 leading-relaxed">{project.problem}</p>
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">
-              Approach / Methodology
-            </h2>
-            <p className="text-base text-grey-600 leading-relaxed">{project.approach}</p>
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">Key Insights</h2>
-            <ul className="space-y-2">
-              {project.insights.map((insight) => (
-                <li key={insight} className="text-base text-grey-600 leading-relaxed flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                  {insight}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">
-              Skills & Methods Used
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {project.skills.map((skill) => (
-                <span key={skill} className="text-sm px-3 py-1.5 rounded-full bg-grey-100 text-navy-700">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {relatedExpertise.length > 0 && (
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div
+            className="space-y-10 rounded-2xl p-8 sm:p-10"
+            style={{
+              backgroundColor: "rgba(7,18,32,0.58)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+            }}
+          >
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">
-                Related Expertise
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                Overview
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                {project.overview}
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                Problem / Context
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                {project.problem}
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                Approach / Methodology
+              </h2>
+              <p className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                {project.approach}
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                Key Insights
+              </h2>
+              <ul className="space-y-2">
+                {project.insights.map((insight) => (
+                  <li key={insight} className="text-base leading-relaxed flex items-start gap-3" style={{ color: "#cbd5e1" }}>
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#5ac8a7" }} />
+                    {insight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                Skills & Methods Used
               </h2>
               <div className="flex flex-wrap gap-2">
-                {relatedExpertise.map((e) => (
-                  <Link
-                    key={e.slug}
-                    href={`/expertise#${e.slug}`}
-                    className="text-sm px-3 py-1.5 rounded-full bg-blue-grey text-navy-700 hover:bg-grey-200 transition-colors"
+                {project.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="text-sm px-3 py-1.5 rounded-full"
+                    style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#cbd5e1" }}
                   >
-                    {e.title}
-                  </Link>
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
-          )}
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-500"
-          >
-            Discuss a project like this
-            <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+            {relatedExpertise.length > 0 && (
+              <div>
+                <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
+                  Related Expertise
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {relatedExpertise.map((e) => (
+                    <Link
+                      key={e.slug}
+                      href={`/expertise#${e.slug}`}
+                      className="text-sm px-3 py-1.5 rounded-full transition-colors"
+                      style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#cbd5e1" }}
+                    >
+                      {e.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold"
+              style={{ color: "#5ac8a7" }}
+            >
+              Discuss a project like this
+              <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 

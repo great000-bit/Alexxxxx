@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Flame, Leaf, GitBranch, FileSearch } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import CredibilityBar from "@/components/CredibilityBar";
 import SectionHeading from "@/components/SectionHeading";
+import ScrollReveal from "@/components/ScrollReveal";
 import ExpertiseCard from "@/components/ExpertiseCard";
 import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
@@ -15,27 +16,30 @@ import { publications } from "@/content/publications";
 import { blogPosts } from "@/content/blog";
 import { volunteerNG } from "@/content/impact";
 
+const glassPanel = {
+  backgroundColor: "rgba(7,18,32,0.58)",
+  backdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+};
+
 const helpsWith = [
   {
-    icon: Flame,
     title: "Hydrogen & Energy Transition Strategy",
     description:
       "Helping stakeholders understand hydrogen pathways, policy direction, adoption barriers, and value-chain opportunities.",
   },
   {
-    icon: Leaf,
     title: "Net-Zero & Carbon Strategy",
     description:
       "Supporting organisations with carbon management, net-zero planning, sustainability reporting, and decarbonisation thinking.",
   },
   {
-    icon: GitBranch,
     title: "Life Cycle & Value Chain Analysis",
     description:
       "Evaluating environmental impact, system dependencies, stakeholder relationships, and sustainability trade-offs.",
   },
   {
-    icon: FileSearch,
     title: "Research, Policy & Technical Advisory",
     description:
       "Producing evidence-based insights, technical reports, policy analysis, and research outputs for decision-making.",
@@ -43,173 +47,280 @@ const helpsWith = [
 ];
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 6);
-  const featuredExpertise = expertiseAreas.slice(0, 9);
+  const featuredProject = projects[0];
+  const supportingProjects = projects.slice(1, 5);
+  const featuredExpertise = expertiseAreas.slice(0, 8);
 
   return (
     <>
       <Hero />
       <CredibilityBar />
 
-      {/* Strategic intro */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="max-w-3xl">
-            <SectionHeading eyebrow="About" title="A research-backed perspective on the energy transition" />
-            <p className="mt-5 text-base text-grey-600 leading-relaxed">{bio.short}</p>
-            <Link
-              href="/about"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-500"
-            >
-              Learn More About Alexander
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* About / Positioning — editorial split: heading + intro on the left, a glass
+          quote-style card with the core positioning statement on the right. */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
+            <ScrollReveal direction="left">
+              <SectionHeading
+                eyebrow="About"
+                title="A research-backed perspective on the energy transition"
+              />
+              <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                {bio.short}
+              </p>
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
+                style={{ color: "#5ac8a7" }}
+              >
+                Learn More About Alexander
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </ScrollReveal>
 
-      {/* What Alexander helps with */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="How I Help" title="What Alexander helps with" align="center" />
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {helpsWith.map((item) => (
-              <div key={item.title} className="rounded-lg border border-grey-200 bg-white p-6">
-                <item.icon size={22} className="text-emerald-600 mb-4" aria-hidden="true" />
-                <h3 className="text-sm font-semibold text-navy-950 mb-2">{item.title}</h3>
-                <p className="text-sm text-grey-600 leading-relaxed">{item.description}</p>
+            <ScrollReveal direction="right" delayMs={120}>
+              <div className="rounded-2xl p-8" style={glassPanel}>
+                <p
+                  className="font-[family-name:var(--font-heading)] text-xl leading-snug"
+                  style={{ color: "#f8fafc" }}
+                >
+                  &ldquo;Sustainable energy transition depends on evidence, not assumption &mdash;
+                  research and policy analysis that organisations can actually act on.&rdquo;
+                </p>
+                <div className="mt-6 pt-6 grid grid-cols-2 gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+                  <div>
+                    <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: "#5ac8a7" }}>
+                      PhD
+                    </p>
+                    <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>
+                      Robert Gordon University
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: "#5ac8a7" }}>
+                      3+
+                    </p>
+                    <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>
+                      Research &amp; advisory areas
+                    </p>
+                  </div>
+                </div>
               </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* What Alexander helps with — four glass cards in a row */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <SectionHeading eyebrow="How I Help" title="What Alexander helps with" align="center" />
+          </ScrollReveal>
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {helpsWith.map((item, i) => (
+              <ScrollReveal key={item.title} delayMs={i * 100}>
+                <div className="rounded-2xl p-6 h-full" style={glassPanel}>
+                  <span
+                    className="font-[family-name:var(--font-heading)] text-sm font-semibold"
+                    style={{ color: "#5ac8a7" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-sm font-semibold mb-2" style={{ color: "#f8fafc" }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                    {item.description}
+                  </p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured expertise */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <SectionHeading eyebrow="Expertise" title="Areas of deep technical expertise" />
-            <Link href="/expertise" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
-              View all expertise
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredExpertise.map((area) => (
-              <ExpertiseCard key={area.slug} area={area} />
+      {/* Featured expertise — bento grid: first card spans 2 columns, rest are single,
+          deliberately uneven sizing rather than a uniform grid. */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+              <SectionHeading
+                eyebrow="Expertise"
+                title="Advisory depth across hydrogen, carbon, and energy systems."
+                description="A focused set of research and consulting capabilities for organisations navigating the net-zero transition."
+              />
+              <Link
+                href="/expertise"
+                className="text-sm font-semibold inline-flex items-center gap-1.5"
+                style={{ color: "#5ac8a7" }}
+              >
+                View all expertise
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:auto-rows-fr">
+            {featuredExpertise.map((area, i) => (
+              <ScrollReveal
+                key={area.slug}
+                delayMs={(i % 4) * 90}
+                className={i === 0 ? "sm:col-span-2 lg:col-span-2" : ""}
+              >
+                <ExpertiseCard area={area} index={i} />
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured projects */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <SectionHeading eyebrow="Selected Work" title="Featured projects" />
-            <Link href="/projects" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
-              View all projects
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
+      {/* Featured projects — one large featured card, four smaller supporting cards */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+              <SectionHeading eyebrow="Selected Work" title="Featured projects" />
+              <Link
+                href="/projects"
+                className="text-sm font-semibold inline-flex items-center gap-1.5"
+                style={{ color: "#5ac8a7" }}
+              >
+                View all projects
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
+          <div className="grid lg:grid-cols-2 gap-6">
+            <ScrollReveal direction="left">
+              <ProjectCard project={featuredProject} featured />
+            </ScrollReveal>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {supportingProjects.map((project, i) => (
+                <ScrollReveal key={project.slug} direction="right" delayMs={i * 90}>
+                  <ProjectCard project={project} />
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Research & publications preview */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <SectionHeading
-              eyebrow="Research"
-              title="Research & publications"
-              description="Peer-reviewed articles, conference papers, technical reports, and ongoing research outputs."
-            />
-            <Link href="/research" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
-              View Research & Publications
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+              <SectionHeading
+                eyebrow="Research"
+                title="Research & publications"
+                description="Peer-reviewed articles, conference papers, technical reports, and ongoing research outputs."
+              />
+              <Link
+                href="/research"
+                className="text-sm font-semibold inline-flex items-center gap-1.5"
+                style={{ color: "#5ac8a7" }}
+              >
+                View Research & Publications
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {publications.map((pub) => (
-              <PublicationCard key={pub.title} publication={pub} />
+            {publications.map((pub, i) => (
+              <ScrollReveal key={pub.title} delayMs={i * 90}>
+                <PublicationCard publication={pub} />
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Leadership & social impact preview */}
-      <section className="bg-navy-900/80 py-16 lg:py-20">
+      {/* Leadership & social impact preview — split: story left, stat cards right */}
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <ScrollReveal direction="left">
               <SectionHeading
                 eyebrow="Leadership & Social Impact"
                 title={`${volunteerNG.role}, ${volunteerNG.organisation}`}
-                light
               />
-              <p className="mt-5 text-base text-grey-200 leading-relaxed">
-                Alexander combines technical expertise with people-focused leadership — supporting diaspora
-                fundraising, education, and community development through VolunteerNG.
+              <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                Alexander combines technical expertise with people-focused leadership &mdash;
+                supporting diaspora fundraising, education, and community development through
+                VolunteerNG.
               </p>
               <Link
                 href="/impact"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-400 hover:text-emerald-300"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
+                style={{ color: "#5ac8a7" }}
               >
                 Explore Social Impact
                 <ArrowRight size={14} aria-hidden="true" />
               </Link>
-            </div>
-            <ul className="space-y-3">
-              {volunteerNG.contributions.slice(0, 4).map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-grey-200 leading-relaxed">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            </ScrollReveal>
+            <ScrollReveal direction="right" delayMs={120}>
+              <div className="rounded-2xl p-8" style={glassPanel}>
+                <ul className="space-y-4">
+                  {volunteerNG.contributions.slice(0, 4).map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "#cbd5e1" }}>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#5ac8a7" }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Speaking & media preview */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="rounded-xl border border-grey-200 bg-grey-50 p-10 text-center">
-            <SectionHeading
-              eyebrow="Speaking & Media"
-              title="Available for talks, panels, and commentary"
-              description="On hydrogen, sustainability, net-zero transition, policy, and industrial decarbonisation."
-              align="center"
-            />
-            <Link
-              href="/speaking"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-500"
-            >
-              Invite Alexander to Speak
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="rounded-2xl p-10 text-center" style={glassPanel}>
+              <SectionHeading
+                eyebrow="Speaking & Media"
+                title="Available for talks, panels, and commentary"
+                description="On hydrogen, sustainability, net-zero transition, policy, and industrial decarbonisation."
+                align="center"
+              />
+              <Link
+                href="/speaking"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
+                style={{ color: "#5ac8a7" }}
+              >
+                Invite Alexander to Speak
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Insights preview */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <SectionHeading eyebrow="Insights" title="Thinking on hydrogen, net zero, and sustainability" />
-            <Link href="/insights" className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 inline-flex items-center gap-1.5">
-              View all insights
-              <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+              <SectionHeading eyebrow="Insights" title="Thinking on hydrogen, net zero, and sustainability" />
+              <Link
+                href="/insights"
+                className="text-sm font-semibold inline-flex items-center gap-1.5"
+                style={{ color: "#5ac8a7" }}
+              >
+                View all insights
+                <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            </div>
+          </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.slice(0, 3).map((post) => (
-              <BlogCard key={post.slug} post={post} />
+            {blogPosts.slice(0, 3).map((post, i) => (
+              <ScrollReveal key={post.slug} delayMs={i * 100}>
+                <BlogCard post={post} />
+              </ScrollReveal>
             ))}
           </div>
         </div>

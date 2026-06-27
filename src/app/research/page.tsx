@@ -3,6 +3,7 @@ import { ExternalLink } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PublicationCard from "@/components/PublicationCard";
 import CTASection from "@/components/CTASection";
+import ScrollReveal from "@/components/ScrollReveal";
 import { publications, researchFocusAreas } from "@/content/publications";
 import { socials } from "@/content/site";
 
@@ -19,82 +20,106 @@ const profileLinks = [
   { label: "LinkedIn", href: socials.linkedin },
 ];
 
+const glassPanel = {
+  backgroundColor: "rgba(7,18,32,0.58)",
+  backdropFilter: "blur(20px)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+};
+
 export default function ResearchPage() {
   return (
     <>
       <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-400 mb-3">Research</p>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+            Research
+          </p>
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             Research & Publications
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
             Research focused on blue hydrogen, the UK net-zero transition, life cycle assessment, and energy
             policy.
           </p>
         </div>
       </section>
 
-      {/* Research focus */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="Research Focus" title="Areas of research interest" />
-          <div className="mt-6 flex flex-wrap gap-2">
-            {researchFocusAreas.map((area) => (
-              <span key={area} className="text-sm font-medium px-3 py-1.5 rounded-full bg-blue-grey text-navy-700">
-                {area}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Editorial split: research focus + featured research on the left, stacked
+          publication cards on the right — matches the brief's "left heading and
+          positioning, right timeline/stacked publication cards" spec. */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
+            <ScrollReveal direction="left">
+              <SectionHeading eyebrow="Research Focus" title="Areas of research interest" />
+              <div className="mt-6 flex flex-wrap gap-2">
+                {researchFocusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="text-sm font-medium px-3 py-1.5 rounded-full"
+                    style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#cbd5e1" }}
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
 
-      {/* Featured research */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="Featured Research" title="PhD Research: Blue Hydrogen and the UK Net Zero Transition" />
-          <p className="mt-5 text-base text-grey-600 leading-relaxed max-w-2xl">
-            Alexander&apos;s PhD at Robert Gordon University examined the role blue hydrogen could play in
-            enabling the UK&apos;s net-zero transition — work that underpins much of his current hydrogen
-            strategy and policy advisory.
-          </p>
-        </div>
-      </section>
+              <div className="mt-10 rounded-2xl p-7" style={glassPanel}>
+                <p className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: "#c6a15b" }}>
+                  Featured Research
+                </p>
+                <h2
+                  className="font-[family-name:var(--font-heading)] text-lg font-bold mb-3"
+                  style={{ color: "#f8fafc" }}
+                >
+                  PhD Research: Blue Hydrogen and the UK Net Zero Transition
+                </h2>
+                <p className="text-sm leading-relaxed" style={{ color: "#cbd5e1" }}>
+                  Alexander&apos;s PhD at Robert Gordon University examined the role blue hydrogen could play
+                  in enabling the UK&apos;s net-zero transition — work that underpins much of his current
+                  hydrogen strategy and policy advisory.
+                </p>
+              </div>
 
-      {/* Publications */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading
-            eyebrow="Publications"
-            title="Publications and research outputs"
-            description="Peer-reviewed journal articles, conference papers, technical reports, and white papers."
-          />
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {publications.map((pub) => (
-              <PublicationCard key={pub.title} publication={pub} />
-            ))}
-          </div>
-          <p className="mt-6 text-sm text-grey-400 italic">
-            This list will be updated as new publications are confirmed.
-          </p>
-        </div>
-      </section>
+              <div className="mt-10">
+                <p className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
+                  Research profiles
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {profileLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-colors"
+                      style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#f8fafc" }}
+                    >
+                      {link.label}
+                      <ExternalLink size={13} aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
 
-      {/* Research profiles */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 rounded-2xl bg-grey-50/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <SectionHeading eyebrow="Profiles" title="Research profiles" />
-          <div className="mt-6 flex flex-wrap gap-4">
-            {profileLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-md border border-grey-200 bg-white text-navy-950 hover:border-emerald-500 transition-colors"
-              >
-                {link.label}
-                <ExternalLink size={13} aria-hidden="true" />
-              </a>
-            ))}
+            <ScrollReveal direction="right" delayMs={120}>
+              <p className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
+                Publications and research outputs
+              </p>
+              <div className="space-y-4">
+                {publications.map((pub, i) => (
+                  <ScrollReveal key={pub.title} direction="right" delayMs={120 + i * 80}>
+                    <PublicationCard publication={pub} />
+                  </ScrollReveal>
+                ))}
+              </div>
+              <p className="mt-6 text-sm italic" style={{ color: "#64748b" }}>
+                This list will be updated as new publications are confirmed.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
