@@ -4,19 +4,13 @@ import { Download, Mail } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import PremiumButton from "@/components/PremiumButton";
 import { speakingTopics } from "@/content/speaking";
 
 export const metadata: Metadata = {
   title: "Speaking & Media | Alexander Oburoh",
   description:
     "Alexander Oburoh is available for talks, panels, and commentary on hydrogen, sustainability, net-zero transition, and industrial decarbonisation.",
-};
-
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
 };
 
 export default function SpeakingPage() {
@@ -60,14 +54,20 @@ export default function SpeakingPage() {
         </div>
       </section>
 
-      {/* Selected talks / conferences - future ready */}
+      {/* Selected talks / conferences - future ready. Intentionally dashed/empty-state
+          styling here, not the standard GlassCard pattern, since this is a placeholder
+          rather than content-bearing glass panel. */}
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Selected Talks" title="Conferences, workshops & panels" />
             <div
               className="mt-8 rounded-2xl p-8 text-center"
-              style={{ ...glassPanel, border: "1px dashed rgba(255,255,255,0.18)" }}
+              style={{
+                backgroundColor: "rgba(7,18,32,0.58)",
+                backdropFilter: "blur(20px)",
+                border: "1px dashed rgba(255,255,255,0.18)",
+              }}
             >
               <p className="text-sm" style={{ color: "#94a3b8" }}>
                 Speaking engagements will be listed here as they are confirmed.
@@ -86,22 +86,15 @@ export default function SpeakingPage() {
               For media enquiries, commentary requests, or speaking invitations, get in touch directly.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contact?enquiry=speaking"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)]"
-              >
+              <PremiumButton as={Link} href="/contact?enquiry=speaking" variant="primary">
                 <Mail size={16} aria-hidden="true" />
                 Contact for Speaking
-              </Link>
+              </PremiumButton>
               {/* TODO: link to a real downloadable speaker bio PDF once one is produced */}
-              <Link
-                href="/cv"
-                className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
-                style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.16)", color: "#f8fafc" }}
-              >
+              <PremiumButton as={Link} href="/cv" variant="glass">
                 <Download size={16} aria-hidden="true" />
                 Download Speaker Bio
-              </Link>
+              </PremiumButton>
             </div>
           </ScrollReveal>
         </div>

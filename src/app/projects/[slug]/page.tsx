@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
+import GlassCard from "@/components/GlassCard";
+import ScrollReveal from "@/components/ScrollReveal";
 import { projects } from "@/content/projects";
 import { expertiseAreas } from "@/content/expertise";
 
@@ -72,15 +74,8 @@ export default async function ProjectDetailPage({
 
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div
-            className="space-y-10 rounded-2xl p-8 sm:p-10"
-            style={{
-              backgroundColor: "rgba(7,18,32,0.58)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-            }}
-          >
+          <ScrollReveal>
+            <GlassCard className="space-y-10 p-8 sm:p-10">
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
                 Overview
@@ -161,13 +156,14 @@ export default async function ProjectDetailPage({
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold"
+              className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold"
               style={{ color: "#5ac8a7" }}
             >
               Discuss a project like this
               <ArrowRight size={14} aria-hidden="true" />
             </Link>
-          </div>
+            </GlassCard>
+          </ScrollReveal>
         </div>
       </section>
 
