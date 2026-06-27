@@ -80,36 +80,41 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delayMs={360}>
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
                 {/* Primary: white background, deep navy text, subtle border, slight
-                    premium glow on hover only — per the CTA button style brief. */}
+                    premium glow on hover only — per the CTA button style brief. Full
+                    width on mobile, matching the screenshot reference; auto width from
+                    sm up. */}
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 border border-white/40 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 sm:py-3 text-sm font-semibold text-navy-950 border border-white/40 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)] w-full sm:w-auto"
                 >
                   Explore My Work
                   <span aria-hidden="true">→</span>
                 </Link>
 
-                {/* Secondary + third: glassmorphism — transparent white layer, subtle
-                    white border, backdrop blur, slight hover glow. No neon. */}
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
-                >
-                  Get in Touch
-                </Link>
-                <Link
-                  href="/cv"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-emerald-300/40 hover:shadow-[0_0_20px_rgba(110,231,183,0.12)]"
-                >
-                  Download CV
-                </Link>
+                {/* Secondary + third: glassmorphism, side by side on mobile (each takes
+                    half the row via flex-1) per the screenshot reference, auto width
+                    from sm up. */}
+                <div className="flex gap-3 w-full sm:w-auto sm:contents">
+                  <Link
+                    href="/contact"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 px-5 py-3.5 sm:py-3 text-sm font-semibold text-white transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
+                  >
+                    Get in Touch
+                  </Link>
+                  <Link
+                    href="/cv"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-full bg-white/[0.06] backdrop-blur-md border border-white/15 px-5 py-3.5 sm:py-3 text-sm font-semibold text-white/90 transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-emerald-300/40 hover:shadow-[0_0_20px_rgba(110,231,183,0.12)]"
+                  >
+                    Download CV
+                  </Link>
+                </div>
               </div>
             </Reveal>
           </div>
 
-          <Reveal delayMs={220} className="hidden lg:block">
+          <Reveal delayMs={220} className="mt-10 lg:mt-0">
             <HeroPortraitFrame />
           </Reveal>
         </div>
