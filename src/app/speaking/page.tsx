@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function SpeakingPage() {
   return (
     <>
-      <section className="bg-navy-950 py-16 lg:py-20">
+      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">Speaking & Media</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
