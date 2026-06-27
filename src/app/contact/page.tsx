@@ -205,7 +205,7 @@ function ContactFormWithParams() {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <p className="text-sm font-semibold text-emerald-400 mb-3">Contact</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -218,8 +218,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div className="grid lg:grid-cols-[1fr_320px] gap-14">
             <Suspense fallback={<div className="text-sm text-grey-400">Loading form…</div>}>
               <ContactFormWithParams />

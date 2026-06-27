@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
-            <p className="font-[family-name:var(--font-heading)] text-lg font-bold text-white mb-3">
+            <p className="font-[family-name:var(--font-logo)] text-lg font-bold text-white mb-3">
               {site.shortTitle}
             </p>
             <p className="text-sm text-grey-400 leading-relaxed max-w-sm">{site.footerStatement}</p>

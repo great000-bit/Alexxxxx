@@ -37,7 +37,7 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <Link
             href="/projects"
@@ -60,8 +60,8 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-10">
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 space-y-10 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-600 mb-3">Overview</h2>
             <p className="text-base text-grey-600 leading-relaxed">{project.overview}</p>

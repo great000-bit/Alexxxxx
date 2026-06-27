@@ -1,16 +1,16 @@
-// 6-item nav for the floating pill menu, per the nav/hero rebuild brief — this is
-// deliberately a smaller set than the full sitemap (Services/Impact/Insights/Speaking
-// still exist as real pages, just not in this particular nav; they're still reachable via
-// the footer). Do not add Services/Impact/Insights back here without checking whether
-// that brief is still in effect — this was an intentional, explicit reduction.
+// 5-item center nav for the floating pill menu. Contact is intentionally NOT here — it
+// has its own dedicated button on the right side of the nav (see contactCTA below),
+// per the nav revision brief. Services/Impact/Insights/Speaking still exist as real
+// pages, just not in this particular nav; they're still reachable via the footer.
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Expertise", href: "/expertise" },
   { label: "Projects", href: "/projects" },
   { label: "Research", href: "/research" },
-  { label: "Contact", href: "/contact" },
 ] as const;
+
+export const contactCTA = { label: "Contact", href: "/contact" } as const;
 
 export const footerLinks = {
   quick: [
