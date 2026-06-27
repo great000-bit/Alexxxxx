@@ -4,22 +4,19 @@ import { useEffect, useRef, useState } from "react";
 
 /**
  * Global, fixed-position background layer sitting behind the entire site (mounted once
- * in layout.tsx, not per-page). Replaces the flat navy section backgrounds with a single
- * persistent looped video/fallback that shows through every page via transparent section
- * backgrounds.
+ * in layout.tsx). This is a rewrite of the original version, which was correct in
+ * structure but too faint to actually read as a visible background once stacked under
+ * the readability overlay and glass section panels — confirmed by direct feedback that
+ * the site "still looks like a flat static dark background." This version raises the
+ * fallback gradients' opacity and size substantially and lightens the overlay, while
+ * staying within "subtle, not distracting" — verify visually after any future tuning.
  *
  * Degrades gracefully on every axis the brief calls out:
  * - No video files exist yet — onError on both <source> elements swaps in the animated
  *   CSS fallback below instead of a broken video element.
- * - No animated-fallback case is "blank": even before/without a real video, the CSS
- *   radial-gradient fallback gives the same atmospheric energy-flow feel the brief wants,
- *   just via two slowly-drifting soft gradients instead of footage.
  * - prefers-reduced-motion: pauses/hides the video AND stops the CSS fallback's motion,
- *   leaving a single static atmospheric frame — checked via a lazy useState initializer
- *   (not inside an effect, avoiding the setState-in-effect anti-pattern) plus a live
- *   listener for changes mid-session.
- * - pointer-events: none and aria-hidden — this is decorative only, never something a
- *   user needs to interact with or that screen readers need to announce.
+ *   leaving a single static atmospheric frame.
+ * - pointer-events: none and aria-hidden — decorative only.
  */
 export default function GlobalEnergyBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,28 +50,36 @@ export default function GlobalEnergyBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* CSS fallback: two large, very slowly drifting soft radial gradients (emerald +
-          deep navy), evoking fluid energy movement without any video asset or canvas/
-          Three.js/particle library. This is what actually renders right now, since no
-          video file exists yet — see the TODO on the <source> tags below for where to
-          drop in the real optimized WebM/MP4 once produced.
-          When prefersReducedMotion is true, the animation classes are swapped out
-          entirely (not just paused via the global CSS rule) so the gradients sit in a
-          single fixed position rather than mid-transition. */}
+      {/* Base — deep navy, per the exact palette spec. */}
+      <div className="absolute inset-0" style={{ backgroundColor: "#030812" }} />
+
+      {/* CSS fallback: three large, slowly drifting soft radial colour fields (emerald,
+          teal, and a touch of muted gold), genuinely visible at rest rather than buried
+          under heavy opacity reduction. This is what actually renders right now, since
+          no video file exists — see the TODO on the <source> tags below for where to
+          drop in the real optimized WebM/MP4 once produced. */}
       <div
-        className={`absolute inset-0 bg-navy-950 transition-opacity duration-500 ${
+        className={`absolute inset-0 transition-opacity duration-500 ${
           showFallback ? "opacity-100" : "opacity-0"
         }`}
       >
         <div
-          className={`absolute -top-1/4 -left-1/4 w-[70vw] h-[70vw] rounded-full bg-emerald-500/10 blur-3xl ${
+          className={`absolute -top-[10%] -left-[15%] w-[85vw] h-[85vw] rounded-full blur-[110px] ${
             prefersReducedMotion ? "" : "animate-energy-drift-a"
           }`}
+          style={{ backgroundColor: "#0e6b57", opacity: 0.42 }}
         />
         <div
-          className={`absolute -bottom-1/4 -right-1/4 w-[60vw] h-[60vw] rounded-full bg-navy-700/30 blur-3xl ${
+          className={`absolute -bottom-[15%] -right-[10%] w-[75vw] h-[75vw] rounded-full blur-[110px] ${
             prefersReducedMotion ? "" : "animate-energy-drift-b"
           }`}
+          style={{ backgroundColor: "#5ac8a7", opacity: 0.22 }}
+        />
+        <div
+          className={`absolute top-[35%] left-[55%] w-[45vw] h-[45vw] rounded-full blur-[120px] ${
+            prefersReducedMotion ? "" : "animate-energy-drift-c"
+          }`}
+          style={{ backgroundColor: "#c6a15b", opacity: 0.08 }}
         />
       </div>
 
@@ -101,14 +106,15 @@ export default function GlobalEnergyBackground() {
         </video>
       )}
 
-      {/* Global readability overlay: dark navy, low opacity, with a subtle vignette
-          (darker at the edges) rather than a flat solid block — keeps text readable on
-          every page while still letting the motion behind it show through subtly. */}
+      {/* Readability overlay — lighter than the previous version (0.55 -> 0.30 base),
+          since the previous overlay was a major contributor to the background reading
+          as "not visible". Still vignetted (darker at the edges) rather than a flat
+          block, and still enough to keep text readable on top. */}
       <div
-        className="absolute inset-0 bg-navy-950/55"
+        className="absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse at center, transparent 0%, rgba(5,11,20,0.35) 100%)",
+            "radial-gradient(ellipse at center, rgba(3,8,18,0.22) 0%, rgba(3,8,18,0.46) 100%)",
         }}
       />
     </div>

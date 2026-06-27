@@ -30,6 +30,20 @@
   --color-grey-600: #5b6470;
   --color-blue-grey: #e4ebf0;
 
+  /* Exact palette from the site-wide premium redesign brief. These are new, distinct
+     tokens rather than renames of the navy/emerald set above — many existing components
+     already reference navy-950/emerald-500 etc., and this set is for the new global
+     background + glass-panel system specifically, where the brief gave exact hex values
+     to hit precisely (its emerald/navy aren't quite the same shades as the ones above). */
+  --color-base-deep: #030812;
+  --color-navy-flow: #071a2d;
+  --color-energy-emerald: #0e6b57;
+  --color-teal-highlight: #5ac8a7;
+  --color-gold-highlight: #c6a15b;
+  --color-slate-heading: #f8fafc;
+  --color-slate-body: #cbd5e1;
+  --color-slate-muted: #94a3b8;
+
   /* Fonts */
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-montserrat);
@@ -50,6 +64,7 @@
      as "subtle atmospheric energy flow" rather than anything fast or distracting. */
   --animate-energy-drift-a: energy-drift-a 42s ease-in-out infinite;
   --animate-energy-drift-b: energy-drift-b 50s ease-in-out infinite;
+  --animate-energy-drift-c: energy-drift-c 65s ease-in-out infinite;
 }
 
 @keyframes energy-drift-a {
@@ -67,6 +82,15 @@
   }
   50% {
     transform: translate(-5%, -6%) scale(1.06);
+  }
+}
+
+@keyframes energy-drift-c {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-8%, 5%) scale(1.1);
   }
 }
 

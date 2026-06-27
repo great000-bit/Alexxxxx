@@ -10,12 +10,23 @@ export const metadata: Metadata = {
 // a real contact form backend collects and stores submitted data.
 export default function PrivacyPage() {
   return (
-    <section className="py-16 lg:py-20">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-navy-950 mb-8">
+    <section className="py-20 lg:py-24">
+      <div
+        className="mx-auto max-w-3xl px-6 lg:px-8 rounded-2xl p-8 sm:p-10"
+        style={{
+          backgroundColor: "rgba(7,18,32,0.58)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+        }}
+      >
+        <h1
+          className="font-[family-name:var(--font-heading)] text-3xl font-bold mb-8"
+          style={{ color: "#f8fafc" }}
+        >
           Privacy Policy
         </h1>
-        <div className="space-y-6 text-base text-grey-600 leading-relaxed">
+        <div className="space-y-6 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
           <p>
             This is a placeholder privacy policy. It should be replaced with reviewed, accurate content
             describing what data this website collects (for example, contact form submissions) and how that

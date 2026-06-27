@@ -14,17 +14,28 @@ export const metadata: Metadata = {
 export default function CVPage() {
   return (
     <section className="py-20">
-      <div className="mx-auto max-w-2xl px-6 lg:px-8 text-center rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-navy-950 mb-4">
+      <div
+        className="mx-auto max-w-2xl px-6 lg:px-8 text-center rounded-2xl p-8 sm:p-10"
+        style={{
+          backgroundColor: "rgba(7,18,32,0.58)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+        }}
+      >
+        <h1
+          className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-4"
+          style={{ color: "#f8fafc" }}
+        >
           CV coming soon
         </h1>
-        <p className="text-base text-grey-600 leading-relaxed mb-6">
+        <p className="text-base leading-relaxed mb-6" style={{ color: "#cbd5e1" }}>
           A downloadable CV will be available here shortly. In the meantime, get in touch directly and a CV
           can be sent on request.
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 rounded-md bg-navy-950 px-5 py-3 text-sm font-semibold text-white hover:bg-navy-800 transition-colors"
+          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)]"
         >
           <Mail size={16} aria-hidden="true" />
           Request CV

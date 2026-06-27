@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Send, Mail, ExternalLink, BookOpen, FileText } from "lucide-react";
 import { submitContactForm } from "@/lib/contact";
 import { site, socials } from "@/content/site";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const enquiryTypes = [
   "Consulting",
@@ -15,6 +16,14 @@ const enquiryTypes = [
   "Community / VolunteerNG",
   "General enquiry",
 ];
+
+// Exact field styling per the contact section brief: dark translucent fields, soft
+// border, white text, teal focus state.
+const fieldStyle = {
+  backgroundColor: "rgba(255,255,255,0.06)",
+  border: "1px solid rgba(255,255,255,0.12)",
+  color: "#ffffff",
+};
 
 function ContactFormWithParams() {
   const searchParams = useSearchParams();
@@ -69,9 +78,16 @@ function ContactFormWithParams() {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-8 text-center">
-        <p className="text-base font-semibold text-navy-950 mb-2">Thank you for reaching out.</p>
-        <p className="text-sm text-grey-600">Alexander will respond as soon as possible.</p>
+      <div
+        className="rounded-2xl p-8 text-center"
+        style={{ backgroundColor: "rgba(90,200,167,0.08)", border: "1px solid rgba(90,200,167,0.3)" }}
+      >
+        <p className="text-base font-semibold mb-2" style={{ color: "#f8fafc" }}>
+          Thank you for reaching out.
+        </p>
+        <p className="text-sm" style={{ color: "#cbd5e1" }}>
+          Alexander will respond as soon as possible.
+        </p>
       </div>
     );
   }
@@ -80,7 +96,7 @@ function ContactFormWithParams() {
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium text-navy-950 mb-1.5">
+          <label htmlFor="fullName" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
             Full name <span aria-hidden="true">*</span>
           </label>
           <input
@@ -91,13 +107,18 @@ function ContactFormWithParams() {
             onChange={handleChange("fullName")}
             aria-invalid={!!errors.fullName}
             aria-describedby={errors.fullName ? "fullName-error" : undefined}
-            className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            style={fieldStyle}
           />
-          {errors.fullName && <p id="fullName-error" className="text-xs text-red-600 mt-1">{errors.fullName}</p>}
+          {errors.fullName && (
+            <p id="fullName-error" className="text-xs mt-1" style={{ color: "#f87171" }}>
+              {errors.fullName}
+            </p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-navy-950 mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
             Email address <span aria-hidden="true">*</span>
           </label>
           <input
@@ -108,15 +129,20 @@ function ContactFormWithParams() {
             onChange={handleChange("email")}
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
-            className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            style={fieldStyle}
           />
-          {errors.email && <p id="email-error" className="text-xs text-red-600 mt-1">{errors.email}</p>}
+          {errors.email && (
+            <p id="email-error" className="text-xs mt-1" style={{ color: "#f87171" }}>
+              {errors.email}
+            </p>
+          )}
         </div>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="organisation" className="block text-sm font-medium text-navy-950 mb-1.5">
+          <label htmlFor="organisation" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
             Organisation
           </label>
           <input
@@ -125,12 +151,13 @@ function ContactFormWithParams() {
             type="text"
             value={form.organisation}
             onChange={handleChange("organisation")}
-            className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            style={fieldStyle}
           />
         </div>
 
         <div>
-          <label htmlFor="role" className="block text-sm font-medium text-navy-950 mb-1.5">
+          <label htmlFor="role" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
             Role / title
           </label>
           <input
@@ -139,13 +166,14 @@ function ContactFormWithParams() {
             type="text"
             value={form.role}
             onChange={handleChange("role")}
-            className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            style={fieldStyle}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="enquiryType" className="block text-sm font-medium text-navy-950 mb-1.5">
+        <label htmlFor="enquiryType" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
           Enquiry type <span aria-hidden="true">*</span>
         </label>
         <select
@@ -155,22 +183,27 @@ function ContactFormWithParams() {
           onChange={handleChange("enquiryType")}
           aria-invalid={!!errors.enquiryType}
           aria-describedby={errors.enquiryType ? "enquiryType-error" : undefined}
-          className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none bg-white"
+          className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+          style={{ ...fieldStyle, colorScheme: "dark" }}
         >
-          <option value="">Select an enquiry type</option>
+          <option value="" style={{ color: "#0a1628" }}>
+            Select an enquiry type
+          </option>
           {enquiryTypes.map((type) => (
-            <option key={type} value={type}>
+            <option key={type} value={type} style={{ color: "#0a1628" }}>
               {type}
             </option>
           ))}
         </select>
         {errors.enquiryType && (
-          <p id="enquiryType-error" className="text-xs text-red-600 mt-1">{errors.enquiryType}</p>
+          <p id="enquiryType-error" className="text-xs mt-1" style={{ color: "#f87171" }}>
+            {errors.enquiryType}
+          </p>
         )}
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-navy-950 mb-1.5">
+        <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
           Message <span aria-hidden="true">*</span>
         </label>
         <textarea
@@ -181,19 +214,26 @@ function ContactFormWithParams() {
           onChange={handleChange("message")}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
-          className="w-full rounded-md border border-grey-200 px-3.5 py-2.5 text-sm focus:border-emerald-500 focus:outline-none resize-none"
+          className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none resize-none transition-colors focus:border-[#5ac8a7]"
+          style={fieldStyle}
         />
-        {errors.message && <p id="message-error" className="text-xs text-red-600 mt-1">{errors.message}</p>}
+        {errors.message && (
+          <p id="message-error" className="text-xs mt-1" style={{ color: "#f87171" }}>
+            {errors.message}
+          </p>
+        )}
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-600">Something went wrong. Please try again or email directly.</p>
+        <p className="text-sm" style={{ color: "#f87171" }}>
+          Something went wrong. Please try again or email directly.
+        </p>
       )}
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-6 py-3 text-sm font-semibold text-navy-950 hover:bg-emerald-400 transition-colors disabled:opacity-60"
+        className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)] disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Message"}
         {status !== "submitting" && <Send size={16} aria-hidden="true" />}
@@ -207,58 +247,83 @@ export default function ContactPage() {
     <>
       <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-400 mb-3">Contact</p>
-          <h1 className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold text-white mb-4">
+          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+            Contact
+          </p>
+          <h1
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "#f8fafc" }}
+          >
             Get in touch
           </h1>
-          <p className="text-lg text-grey-200 leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
             Whether it&apos;s a consulting enquiry, a job opportunity, a research collaboration, or a speaking
             invitation — Alexander will respond as soon as possible.
           </p>
         </div>
       </section>
 
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-sm p-8 sm:p-10">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-14">
-            <Suspense fallback={<div className="text-sm text-grey-400">Loading form…</div>}>
-              <ContactFormWithParams />
-            </Suspense>
+      {/* Premium dark glass split panel: form left, direct contact methods right —
+          the conversion-focused final section per the contact redesign brief. */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <ScrollReveal>
+            <div
+              className="rounded-2xl p-8 sm:p-12"
+              style={{
+                backgroundColor: "rgba(7,18,32,0.58)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+              }}
+            >
+              <div className="grid lg:grid-cols-[1fr_320px] gap-14">
+                <Suspense fallback={<div className="text-sm" style={{ color: "#94a3b8" }}>Loading form…</div>}>
+                  <ContactFormWithParams />
+                </Suspense>
 
-            <div>
-              <h2 className="text-sm font-semibold text-navy-950 mb-4">Direct contact</h2>
-              <div className="space-y-3">
-                <a
-                  href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 text-sm text-grey-600 hover:text-emerald-600 transition-colors"
-                >
-                  <Mail size={15} aria-hidden="true" />
-                  {site.email}
-                </a>
-                <a
-                  href={socials.linkedin}
-                  className="flex items-center gap-2 text-sm text-grey-600 hover:text-emerald-600 transition-colors"
-                >
-                  <ExternalLink size={15} aria-hidden="true" />
-                  LinkedIn
-                </a>
-                <a
-                  href={socials.googleScholar}
-                  className="flex items-center gap-2 text-sm text-grey-600 hover:text-emerald-600 transition-colors"
-                >
-                  <BookOpen size={15} aria-hidden="true" />
-                  Google Scholar
-                </a>
-                <a
-                  href={socials.researchGate}
-                  className="flex items-center gap-2 text-sm text-grey-600 hover:text-emerald-600 transition-colors"
-                >
-                  <FileText size={15} aria-hidden="true" />
-                  ResearchGate
-                </a>
+                <div className="lg:pl-10 lg:border-l" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+                  <h2 className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
+                    Direct contact
+                  </h2>
+                  <div className="space-y-3">
+                    <a
+                      href={`mailto:${site.email}`}
+                      className="flex items-center gap-2 text-sm transition-colors"
+                      style={{ color: "#cbd5e1" }}
+                    >
+                      <Mail size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
+                      {site.email}
+                    </a>
+                    <a
+                      href={socials.linkedin}
+                      className="flex items-center gap-2 text-sm transition-colors"
+                      style={{ color: "#cbd5e1" }}
+                    >
+                      <ExternalLink size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
+                      LinkedIn
+                    </a>
+                    <a
+                      href={socials.googleScholar}
+                      className="flex items-center gap-2 text-sm transition-colors"
+                      style={{ color: "#cbd5e1" }}
+                    >
+                      <BookOpen size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
+                      Google Scholar
+                    </a>
+                    <a
+                      href={socials.researchGate}
+                      className="flex items-center gap-2 text-sm transition-colors"
+                      style={{ color: "#cbd5e1" }}
+                    >
+                      <FileText size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
+                      ResearchGate
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </>
