@@ -48,7 +48,10 @@ export default function RootLayout({
     <html lang="en" className={`${montserrat.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        {/* pt-24 clears the fixed floating nav (~80px tall) with a little breathing room
+            beneath it — applied here once so every page gets consistent clearance rather
+            than each page guessing its own top padding. */}
+        <main className="flex-1 pt-24">{children}</main>
         <Footer />
       </body>
     </html>

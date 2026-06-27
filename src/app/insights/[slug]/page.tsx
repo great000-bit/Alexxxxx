@@ -34,7 +34,7 @@ export default async function InsightDetailPage({
 
   return (
     <>
-      <section className="bg-navy-950 py-16 lg:py-20">
+      <section className="bg-navy-950 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
           <Link
             href="/insights"
