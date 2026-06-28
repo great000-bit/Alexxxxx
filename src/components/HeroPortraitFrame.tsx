@@ -3,6 +3,11 @@
  * clamp(260px, 30vw, 420px) — noticeably smaller than the original (which used a flat
  * max-w-md / 448px), so it balances the left headline rather than dominating the hero.
  *
+ * ml-auto (not mx-auto): per direct correction, the image should sit closer to the
+ * container's right edge — aligning with the nav's right edge above it — rather than
+ * centering within its grid column, which left visible empty space on the right that
+ * made the hero's right side feel disconnected from the nav width.
+ *
  * No real photo exists yet — per direct instruction, this uses a clean text-monogram
  * placeholder rather than a stock photo, AI-generated face, or illustration. To add the
  * real photo later: replace the contents of the circular div below with
@@ -12,7 +17,7 @@
 export default function HeroPortraitFrame() {
   return (
     <div
-      className="relative mx-auto aspect-square"
+      className="relative ml-auto aspect-square"
       style={{ width: "clamp(260px, 30vw, 420px)" }}
     >
       <div

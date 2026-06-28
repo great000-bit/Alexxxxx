@@ -50,13 +50,6 @@ export default function Hero() {
       <div className="relative mx-auto max-w-[1280px] px-6 lg:px-8 pt-60 pb-20 lg:pt-68 lg:pb-28 min-h-[calc(100vh-5rem)] flex items-center">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-16 items-center w-full">
           <div className="max-w-[620px]">
-            <Reveal delayMs={0}>
-              <div className="inline-flex items-center gap-2 mb-6">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="text-sm text-grey-200">Open to research, advisory &amp; collaboration</span>
-              </div>
-            </Reveal>
-
             <Reveal delayMs={90}>
               <h1 className="font-[family-name:var(--font-heading)] text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
                 Dr. Alexander Oburoh
