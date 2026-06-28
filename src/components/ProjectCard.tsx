@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
+import GlassCard from "./GlassCard";
 
 export default function ProjectCard({
   project,
@@ -11,16 +12,11 @@ export default function ProjectCard({
   featured?: boolean;
 }) {
   return (
-    <div
-      className={`group flex flex-col rounded-2xl transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 ${
-        featured ? "p-8 sm:p-10" : "p-6"
-      }`}
-      style={{
-        backgroundColor: "rgba(7,18,32,0.58)",
-        backdropFilter: "blur(20px)",
-        border: featured ? "1px solid rgba(90,200,167,0.3)" : "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-      }}
+    <GlassCard
+      as={Link}
+      href={`/projects/${project.slug}`}
+      className={`flex flex-col block ${featured ? "p-8 sm:p-10" : "p-6"}`}
+      style={featured ? { border: "1px solid rgba(90,200,167,0.3)" } : { border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <div className="flex flex-wrap gap-2 mb-3">
         {project.category.map((tag) => (
@@ -40,19 +36,30 @@ export default function ProjectCard({
         {project.title}
       </h3>
       <p
-        className={`leading-relaxed mb-4 flex-1 ${featured ? "text-base" : "text-sm"}`}
+        className={`leading-relaxed mb-5 flex-1 ${featured ? "text-base" : "text-sm"}`}
         style={{ color: "#94a3b8" }}
       >
         {project.summary}
       </p>
-      <Link
-        href={`/projects/${project.slug}`}
-        className="inline-flex items-center gap-1.5 text-sm font-medium"
-        style={{ color: "#5ac8a7" }}
-      >
-        View Project
-        <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
-      </Link>
-    </div>
+
+      {/* Pill + rotating circular icon CTA shape, adapted from the reference site's
+          project card pattern (studied from its source — the live site itself is
+          blocked by this sandbox's network allowlist). Presentational only: the whole
+          card is already the clickable <Link>, so this isn't a nested link. */}
+      <span className="inline-flex items-stretch w-fit">
+        <span
+          className="inline-flex items-center text-xs font-semibold tracking-wide uppercase px-5 py-2.5 rounded-l-full"
+          style={{ backgroundColor: "#ffffff", color: "#071a2d" }}
+        >
+          View Project
+        </span>
+        <span
+          className="inline-flex items-center justify-center w-9 aspect-square rounded-full -ml-px transition-transform duration-300 group-hover:rotate-45"
+          style={{ backgroundColor: "#5ac8a7", color: "#071a2d" }}
+        >
+          <ArrowUpRight size={16} strokeWidth={2.25} aria-hidden="true" />
+        </span>
+      </span>
+    </GlassCard>
   );
 }

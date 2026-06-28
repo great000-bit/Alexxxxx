@@ -4,6 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 import PublicationCard from "@/components/PublicationCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
 import { publications, researchFocusAreas } from "@/content/publications";
 import { socials } from "@/content/site";
 
@@ -19,13 +20,6 @@ const profileLinks = [
   { label: "ResearchGate", href: socials.researchGate },
   { label: "LinkedIn", href: socials.linkedin },
 ];
-
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-};
 
 export default function ResearchPage() {
   return (
@@ -68,7 +62,7 @@ export default function ResearchPage() {
                 ))}
               </div>
 
-              <div className="mt-10 rounded-2xl p-7" style={glassPanel}>
+              <GlassCard className="mt-10 p-7">
                 <p className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: "#c6a15b" }}>
                   Featured Research
                 </p>
@@ -83,7 +77,7 @@ export default function ResearchPage() {
                   in enabling the UK&apos;s net-zero transition — work that underpins much of his current
                   hydrogen strategy and policy advisory.
                 </p>
-              </div>
+              </GlassCard>
 
               <div className="mt-10">
                 <p className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>

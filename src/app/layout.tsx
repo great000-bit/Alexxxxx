@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlobalEnergyBackground from "@/components/GlobalEnergyBackground";
+import MotionProvider from "@/components/MotionProvider";
 import { site } from "@/content/site";
 
 // Body text + buttons, per the typography revision brief (previously Inter).
@@ -51,13 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <GlobalEnergyBackground />
-        <Header />
-        {/* pt-24 clears the fixed floating nav (~80px tall) with a little breathing room
-            beneath it — applied here once so every page gets consistent clearance rather
-            than each page guessing its own top padding. */}
-        <main className="flex-1 pt-24">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <GlobalEnergyBackground />
+          <Header />
+          {/* pt-24 clears the fixed floating nav (~80px tall) with a little breathing room
+              beneath it — applied here once so every page gets consistent clearance rather
+              than each page guessing its own top padding. */}
+          <main className="flex-1 pt-24">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

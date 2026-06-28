@@ -5,6 +5,8 @@ import SectionHeading from "@/components/SectionHeading";
 import CredentialCard from "@/components/CredentialCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
+import PremiumButton from "@/components/PremiumButton";
 import { bio, credentials } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -45,13 +47,6 @@ const focusAreas = [
   "Community impact",
 ];
 
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-};
-
 export default function AboutPage() {
   return (
     <>
@@ -77,7 +72,7 @@ export default function AboutPage() {
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <div className="rounded-2xl p-8 sm:p-10" style={glassPanel}>
+            <GlassCard className="p-8 sm:p-10">
               <div className="space-y-5">
                 {bio.full.map((paragraph) => (
                   <p key={paragraph.slice(0, 30)} className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
@@ -85,7 +80,7 @@ export default function AboutPage() {
                   </p>
                 ))}
               </div>
-            </div>
+            </GlassCard>
           </ScrollReveal>
         </div>
       </section>
@@ -106,14 +101,14 @@ export default function AboutPage() {
                       <span className="w-px flex-1 mt-2" style={{ backgroundColor: "rgba(255,255,255,0.14)" }} />
                     )}
                   </div>
-                  <div className="rounded-2xl p-5 flex-1 mb-2" style={glassPanel}>
+                  <GlassCard className="p-5 flex-1 mb-2">
                     <p className="text-sm font-semibold" style={{ color: "#f8fafc" }}>
                       {item.label}
                     </p>
                     <p className="text-sm mt-1 leading-relaxed" style={{ color: "#94a3b8" }}>
                       {item.description}
                     </p>
-                  </div>
+                  </GlassCard>
                 </div>
               </ScrollReveal>
             ))}
@@ -173,23 +168,16 @@ export default function AboutPage() {
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <div className="rounded-2xl p-8 sm:p-10 flex flex-wrap gap-4" style={glassPanel}>
-              <Link
-                href="/cv"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)]"
-              >
+            <GlassCard className="p-8 sm:p-10 flex flex-wrap gap-4">
+              <PremiumButton as={Link} href="/cv" variant="primary">
                 <Download size={16} aria-hidden="true" />
                 Download CV
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5"
-                style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.16)", color: "#f8fafc" }}
-              >
+              </PremiumButton>
+              <PremiumButton as={Link} href="/contact" variant="glass">
                 <Mail size={16} aria-hidden="true" />
                 Contact Alexander
-              </Link>
-            </div>
+              </PremiumButton>
+            </GlassCard>
           </ScrollReveal>
         </div>
       </section>

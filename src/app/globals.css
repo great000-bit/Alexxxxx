@@ -58,40 +58,6 @@
      paint. Pure CSS (runs automatically, no React state/JS needed), per the nav/hero
      rebuild brief's instruction not to add an animation library just for this. */
   --animate-nav-reveal: nav-reveal 0.7s ease-out both;
-
-  /* Very slow, large-scale drift for the global background's CSS fallback gradients —
-     deliberately long durations (40-50s) and small movement range so the motion reads
-     as "subtle atmospheric energy flow" rather than anything fast or distracting. */
-  --animate-energy-drift-a: energy-drift-a 42s ease-in-out infinite;
-  --animate-energy-drift-b: energy-drift-b 50s ease-in-out infinite;
-  --animate-energy-drift-c: energy-drift-c 65s ease-in-out infinite;
-}
-
-@keyframes energy-drift-a {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(6%, 4%) scale(1.08);
-  }
-}
-
-@keyframes energy-drift-b {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-5%, -6%) scale(1.06);
-  }
-}
-
-@keyframes energy-drift-c {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-8%, 5%) scale(1.1);
-  }
 }
 
 @keyframes nav-reveal {

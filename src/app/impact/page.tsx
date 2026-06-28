@@ -3,19 +3,13 @@ import SectionHeading from "@/components/SectionHeading";
 import ImpactCard from "@/components/ImpactCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
 import { volunteerNG, communityLeadership } from "@/content/impact";
 
 export const metadata: Metadata = {
   title: "Leadership & Social Impact | Alexander Oburoh",
   description:
     "Alexander Oburoh's leadership at VolunteerNG, supporting diaspora fundraising, education, and community development.",
-};
-
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
 };
 
 export default function ImpactPage() {
@@ -53,7 +47,7 @@ export default function ImpactPage() {
             </ScrollReveal>
 
             <ScrollReveal direction="right" delayMs={120}>
-              <div className="rounded-2xl p-8" style={glassPanel}>
+              <GlassCard className="p-8">
                 <ul className="space-y-4">
                   {volunteerNG.contributions.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
@@ -62,7 +56,7 @@ export default function ImpactPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </GlassCard>
             </ScrollReveal>
           </div>
         </div>

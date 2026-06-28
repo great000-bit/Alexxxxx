@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import CredibilityBar from "@/components/CredibilityBar";
 import SectionHeading from "@/components/SectionHeading";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
 import ExpertiseCard from "@/components/ExpertiseCard";
 import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
@@ -15,13 +16,6 @@ import { projects } from "@/content/projects";
 import { publications } from "@/content/publications";
 import { blogPosts } from "@/content/blog";
 import { volunteerNG } from "@/content/impact";
-
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-};
 
 const helpsWith = [
   {
@@ -80,7 +74,7 @@ export default function Home() {
             </ScrollReveal>
 
             <ScrollReveal direction="right" delayMs={120}>
-              <div className="rounded-2xl p-8" style={glassPanel}>
+              <GlassCard className="p-8">
                 <p
                   className="font-[family-name:var(--font-heading)] text-xl leading-snug"
                   style={{ color: "#f8fafc" }}
@@ -106,7 +100,7 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </GlassCard>
             </ScrollReveal>
           </div>
         </div>
@@ -121,7 +115,7 @@ export default function Home() {
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {helpsWith.map((item, i) => (
               <ScrollReveal key={item.title} delayMs={i * 100}>
-                <div className="rounded-2xl p-6 h-full" style={glassPanel}>
+                <GlassCard className="p-6 h-full">
                   <span
                     className="font-[family-name:var(--font-heading)] text-sm font-semibold"
                     style={{ color: "#5ac8a7" }}
@@ -134,7 +128,7 @@ export default function Home() {
                   <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
                     {item.description}
                   </p>
-                </div>
+                </GlassCard>
               </ScrollReveal>
             ))}
           </div>
@@ -167,7 +161,7 @@ export default function Home() {
               <ScrollReveal
                 key={area.slug}
                 delayMs={(i % 4) * 90}
-                className={i === 0 ? "sm:col-span-2 lg:col-span-2" : ""}
+                className={i === 0 || i === 5 ? "sm:col-span-2 lg:col-span-2" : ""}
               >
                 <ExpertiseCard area={area} index={i} />
               </ScrollReveal>
@@ -261,7 +255,7 @@ export default function Home() {
               </Link>
             </ScrollReveal>
             <ScrollReveal direction="right" delayMs={120}>
-              <div className="rounded-2xl p-8" style={glassPanel}>
+              <GlassCard className="p-8">
                 <ul className="space-y-4">
                   {volunteerNG.contributions.slice(0, 4).map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "#cbd5e1" }}>
@@ -270,7 +264,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </GlassCard>
             </ScrollReveal>
           </div>
         </div>
@@ -280,7 +274,7 @@ export default function Home() {
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
-            <div className="rounded-2xl p-10 text-center" style={glassPanel}>
+            <GlassCard className="p-10 text-center">
               <SectionHeading
                 eyebrow="Speaking & Media"
                 title="Available for talks, panels, and commentary"
@@ -289,13 +283,13 @@ export default function Home() {
               />
               <Link
                 href="/speaking"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
+                className="relative z-10 mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
                 style={{ color: "#5ac8a7" }}
               >
                 Invite Alexander to Speak
                 <ArrowRight size={14} aria-hidden="true" />
               </Link>
-            </div>
+            </GlassCard>
           </ScrollReveal>
         </div>
       </section>

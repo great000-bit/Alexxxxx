@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
 import { expertiseAreas } from "@/content/expertise";
 import { projects } from "@/content/projects";
 
@@ -10,13 +11,6 @@ export const metadata: Metadata = {
   title: "Expertise | Hydrogen, Net Zero, LCA & Energy Policy",
   description:
     "Alexander Oburoh's technical and advisory expertise across hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy.",
-};
-
-const glassPanel = {
-  backgroundColor: "rgba(7,18,32,0.58)",
-  backdropFilter: "blur(20px)",
-  border: "1px solid rgba(255,255,255,0.12)",
-  boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
 };
 
 export default function ExpertisePage() {
@@ -50,7 +44,7 @@ export default function ExpertisePage() {
                 delayMs={(i % 4) * 90}
                 className={i % 5 === 0 ? "sm:col-span-2" : ""}
               >
-                <a href={`#${area.slug}`} className="group block rounded-2xl p-6 h-full transition-transform duration-200 hover:-translate-y-1" style={glassPanel}>
+                <GlassCard as="a" href={`#${area.slug}`} className="block p-6 h-full">
                   <span className="font-[family-name:var(--font-heading)] text-sm font-semibold" style={{ color: "#5ac8a7" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -60,7 +54,7 @@ export default function ExpertisePage() {
                   <p className="mt-2 text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
                     {area.shortDescription}
                   </p>
-                </a>
+                </GlassCard>
               </ScrollReveal>
             ))}
           </div>
@@ -74,7 +68,7 @@ export default function ExpertisePage() {
             const relatedProjects = projects.filter((p) => area.relatedProjectSlugs.includes(p.slug));
             return (
               <ScrollReveal key={area.slug} delayMs={Math.min(i, 4) * 60}>
-                <article id={area.slug} className="rounded-2xl p-8 sm:p-10 scroll-mt-24" style={glassPanel}>
+                <GlassCard as="article" id={area.slug} className="p-8 sm:p-10 scroll-mt-24">
                   <h2
                     className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-3"
                     style={{ color: "#f8fafc" }}
@@ -85,10 +79,10 @@ export default function ExpertisePage() {
                     {area.description}
                   </p>
 
-                  <p className="text-sm font-semibold mb-3" style={{ color: "#f8fafc" }}>
+                  <p className="relative z-10 text-sm font-semibold mb-3" style={{ color: "#f8fafc" }}>
                     Can support:
                   </p>
-                  <ul className="grid sm:grid-cols-2 gap-2 mb-6">
+                  <ul className="relative z-10 grid sm:grid-cols-2 gap-2 mb-6">
                     {area.canHelpWith.map((item) => (
                       <li key={item} className="text-sm flex items-start gap-2" style={{ color: "#cbd5e1" }}>
                         <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: "#5ac8a7" }} />
@@ -98,7 +92,7 @@ export default function ExpertisePage() {
                   </ul>
 
                   {relatedProjects.length > 0 && (
-                    <div className="mb-6">
+                    <div className="relative z-10 mb-6">
                       <p className="text-sm font-semibold mb-3" style={{ color: "#f8fafc" }}>
                         Related projects:
                       </p>
@@ -119,13 +113,13 @@ export default function ExpertisePage() {
 
                   <Link
                     href={`/contact?enquiry=consulting&expertise=${area.slug}`}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold"
+                    className="relative z-10 inline-flex items-center gap-1.5 text-sm font-semibold"
                     style={{ color: "#5ac8a7" }}
                   >
                     Discuss a {area.title} Project
                     <ArrowRight size={14} aria-hidden="true" />
                   </Link>
-                </article>
+                </GlassCard>
               </ScrollReveal>
             );
           })}

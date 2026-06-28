@@ -7,6 +7,7 @@ import { Send, Mail, ExternalLink, BookOpen, FileText } from "lucide-react";
 import { submitContactForm } from "@/lib/contact";
 import { site, socials } from "@/content/site";
 import ScrollReveal from "@/components/ScrollReveal";
+import GlassCard from "@/components/GlassCard";
 
 const enquiryTypes = [
   "Consulting",
@@ -263,29 +264,33 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Premium dark glass split panel: form left, direct contact methods right —
-          the conversion-focused final section per the contact redesign brief. */}
+      {/* Premium dark glass split panel: contact headline/availability/methods on the
+          left, the form on the right — matches the contact redesign brief's explicit
+          left/right structure (previously this was form-left/methods-right; swapped to
+          match the brief's stated order). */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
-            <div
-              className="rounded-2xl p-8 sm:p-12"
-              style={{
-                backgroundColor: "rgba(7,18,32,0.58)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-              }}
-            >
-              <div className="grid lg:grid-cols-[1fr_320px] gap-14">
-                <Suspense fallback={<div className="text-sm" style={{ color: "#94a3b8" }}>Loading form…</div>}>
-                  <ContactFormWithParams />
-                </Suspense>
-
-                <div className="lg:pl-10 lg:border-l" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
-                  <h2 className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
-                    Direct contact
+            <GlassCard className="p-8 sm:p-12">
+              <div className="relative z-10 grid lg:grid-cols-[320px_1fr] gap-14">
+                <div>
+                  <h2
+                    className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-3"
+                    style={{ color: "#f8fafc" }}
+                  >
+                    Let&apos;s talk
                   </h2>
+                  <p className="text-sm leading-relaxed mb-2" style={{ color: "#cbd5e1" }}>
+                    Send a short note about your enquiry — consulting, research collaboration, a role, or a
+                    speaking invitation.
+                  </p>
+                  <p className="text-xs mb-6" style={{ color: "#5ac8a7" }}>
+                    Currently available for new research, advisory, and collaboration work.
+                  </p>
+
+                  <h3 className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
+                    Direct contact
+                  </h3>
                   <div className="space-y-3">
                     <a
                       href={`mailto:${site.email}`}
@@ -321,8 +326,14 @@ export default function ContactPage() {
                     </a>
                   </div>
                 </div>
+
+                <div className="lg:pl-10 lg:border-l" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+                  <Suspense fallback={<div className="text-sm" style={{ color: "#94a3b8" }}>Loading form…</div>}>
+                    <ContactFormWithParams />
+                  </Suspense>
+                </div>
               </div>
-            </div>
+            </GlassCard>
           </ScrollReveal>
         </div>
       </section>

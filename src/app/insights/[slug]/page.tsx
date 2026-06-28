@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "lucide-react";
 import CTASection from "@/components/CTASection";
+import GlassCard from "@/components/GlassCard";
+import ScrollReveal from "@/components/ScrollReveal";
 import { blogPosts } from "@/content/blog";
 
 export function generateStaticParams() {
@@ -62,29 +64,23 @@ export default async function InsightDetailPage({
 
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <div
-            className="rounded-2xl p-8 sm:p-10"
-            style={{
-              backgroundColor: "rgba(7,18,32,0.58)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-            }}
-          >
-            <p className="text-lg leading-relaxed mb-8" style={{ color: "#cbd5e1" }}>
-              {post.excerpt}
-            </p>
-            {post.isPlaceholder && (
-              <div
-                className="rounded-xl p-8 text-center"
-                style={{ border: "1px dashed rgba(255,255,255,0.18)", backgroundColor: "rgba(255,255,255,0.04)" }}
-              >
-                <p className="text-sm" style={{ color: "#94a3b8" }}>
-                  The full article is being written and will be published here soon.
-                </p>
-              </div>
-            )}
-          </div>
+          <ScrollReveal>
+            <GlassCard className="p-8 sm:p-10">
+              <p className="text-lg leading-relaxed mb-8" style={{ color: "#cbd5e1" }}>
+                {post.excerpt}
+              </p>
+              {post.isPlaceholder && (
+                <div
+                  className="relative z-10 rounded-xl p-8 text-center"
+                  style={{ border: "1px dashed rgba(255,255,255,0.18)", backgroundColor: "rgba(255,255,255,0.04)" }}
+                >
+                  <p className="text-sm" style={{ color: "#94a3b8" }}>
+                    The full article is being written and will be published here soon.
+                  </p>
+                </div>
+              )}
+            </GlassCard>
+          </ScrollReveal>
         </div>
       </section>
 

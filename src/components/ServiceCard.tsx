@@ -1,18 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/content/services";
+import GlassCard from "./GlassCard";
 
 export default function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
-    <div
-      className="rounded-2xl p-6 transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1"
-      style={{
-        backgroundColor: "rgba(7,18,32,0.58)",
-        backdropFilter: "blur(20px)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
-      }}
-    >
+    <GlassCard className="p-6">
       <span className="font-[family-name:var(--font-heading)] text-sm font-semibold" style={{ color: "#5ac8a7" }}>
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -32,12 +25,12 @@ export default function ServiceCard({ service, index }: { service: Service; inde
       </ul>
       <Link
         href={`/contact?enquiry=consulting&service=${service.slug}`}
-        className="inline-flex items-center gap-1.5 text-sm font-medium"
+        className="relative z-10 inline-flex items-center gap-1.5 text-sm font-medium"
         style={{ color: "#5ac8a7" }}
       >
         Discuss This
         <ArrowRight size={14} aria-hidden="true" />
       </Link>
-    </div>
+    </GlassCard>
   );
 }
