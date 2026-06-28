@@ -71,6 +71,24 @@
   }
 }
 
+/* This keyframe is referenced by Marquee.tsx's inline animation style. It was missing
+   entirely from this file until now — the marquee component correctly set up
+   `animation: marquee-scroll ...` but the matching @keyframes rule was never actually
+   written, which is exactly why the marquee never visibly moved despite every other part
+   of the setup (duplicated track content, exactly -50% translateX target, animation-
+   play-state toggling) being correct. Confirmed this was the real bug by checking the
+   track element's getBoundingClientRect().left before and after a 3-second wait and
+   seeing it never change, then confirming no rule named marquee-scroll existed anywhere
+   in this file at all. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -78,11 +96,13 @@
 
   body {
     @apply text-charcoal antialiased;
-    /* Transparent so GlobalEnergyBackground (mounted once in layout.tsx, fixed behind
-       everything) shows through on every page. Do not reintroduce an opaque body
-       background — that was correct under the previous brief, before a global
-       background system existed; this is the intentional new state. */
-    background-color: transparent;
+    /* Pure black on every page except the homepage, per direct correction — the video
+       background is homepage-only now (see GlobalEnergyBackground.tsx), so every other
+       page needs its own real background again rather than relying on a global layer
+       showing through transparency. The homepage's own fixed video/overlay sits at
+       z-index -10 and is unaffected by this, since it's visually in front of this flat
+       black regardless. */
+    background-color: #000000;
     font-family: var(--font-body);
   }
 

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import GlassCard from "@/components/GlassCard";
 import ScrollReveal from "@/components/ScrollReveal";
+import Breadcrumb from "@/components/Breadcrumb";
 import { blogPosts } from "@/content/blog";
 
 export function generateStaticParams() {
@@ -36,16 +36,15 @@ export default async function InsightDetailPage({
 
   return (
     <>
-      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-3xl px-6 lg:px-8">
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-1.5 text-sm mb-6 transition-colors"
-            style={{ color: "#94a3b8" }}
-          >
-            <ArrowLeft size={14} aria-hidden="true" />
-            All insights
-          </Link>
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Insights", href: "/insights" },
+              { label: post.title },
+            ]}
+          />
           <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#5ac8a7" }}>
             {post.category}
           </span>
