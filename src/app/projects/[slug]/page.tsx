@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import GlassCard from "@/components/GlassCard";
 import ScrollReveal from "@/components/ScrollReveal";
+import Breadcrumb from "@/components/Breadcrumb";
 import { projects } from "@/content/projects";
 import { expertiseAreas } from "@/content/expertise";
 
@@ -39,16 +40,15 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm mb-6 transition-colors"
-            style={{ color: "#94a3b8" }}
-          >
-            <ArrowLeft size={14} aria-hidden="true" />
-            All projects
-          </Link>
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Projects", href: "/projects" },
+              { label: project.title },
+            ]}
+          />
           <div className="flex flex-wrap gap-2 mb-4">
             {project.category.map((tag) => (
               <span

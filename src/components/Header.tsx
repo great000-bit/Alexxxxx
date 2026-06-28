@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -9,6 +9,7 @@ import { site } from "@/content/site";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   // Close the mobile menu on route change without an effect that calls setState
@@ -20,12 +21,38 @@ export default function Header() {
     setIsMenuOpen(false);
   }
 
+  // Nav surface becomes slightly stronger once the page has scrolled past the hero/first
+  // section, per the iOS-style glass nav spec — a real scroll listener is unavoidable
+  // here (there's no CSS-only way to react to scroll position for a fixed element), but
+  // it's a single cheap boolean threshold check, not per-pixel work.
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // iOS-style translucent glass: blur + saturate combined, not opaque, per direct
+  // correction that the previous nav (bg-navy-950/60 + backdrop-blur-md) was "too
+  // strong/opaque." Exact rgba values from the brief; saturate(140%) keeps colour behind
+  // the glass looking rich rather than washed out, which plain blur alone tends to do.
+  const navSurfaceStyle = {
+    backgroundColor: isScrolled ? "rgba(5,8,12,0.62)" : "rgba(5,8,12,0.42)",
+    backdropFilter: "blur(22px) saturate(140%)",
+    WebkitBackdropFilter: "blur(22px) saturate(140%)",
+    border: "1px solid rgba(255,255,255,0.10)",
+    transition: "background-color 200ms ease-out",
+  };
+
   return (
     <header
       className="fixed top-0 inset-x-0 z-50 animate-nav-reveal motion-reduce:animate-none"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 pb-2">
-        <div className="flex items-center justify-between gap-4 rounded-full border border-white/10 bg-navy-950/60 backdrop-blur-md px-4 py-2.5 sm:px-5">
+        <div
+          className="flex items-center justify-between gap-4 rounded-full px-4 py-2.5 sm:px-5"
+          style={navSurfaceStyle}
+        >
           {/* Left: avatar + name */}
           <Link href="/" className="flex items-center gap-2.5 min-w-0 flex-shrink-0">
             <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.06] backdrop-blur-sm border border-white/15 flex-shrink-0">
@@ -88,7 +115,8 @@ export default function Header() {
         {/* Mobile menu — simple stacked list, no dramatic full-screen overlay per the brief */}
         {isMenuOpen && (
           <nav
-            className="lg:hidden mt-2 rounded-2xl border border-white/10 bg-navy-950/90 backdrop-blur-md px-5 py-4"
+            className="lg:hidden mt-2 rounded-2xl px-5 py-4"
+            style={{ ...navSurfaceStyle, backgroundColor: "rgba(5,8,12,0.72)" }}
             aria-label="Mobile"
           >
             <div className="flex flex-col gap-1">

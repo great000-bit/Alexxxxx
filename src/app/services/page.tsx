@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
+import Breadcrumb from "@/components/Breadcrumb";
 import { services } from "@/content/services";
 
 export const metadata: Metadata = {
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Services" }]} />
           <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
             Services
           </p>

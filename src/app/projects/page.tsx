@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import ProjectCard from "@/components/ProjectCard";
+import Breadcrumb from "@/components/Breadcrumb";
 import { projects, projectCategories } from "@/content/projects";
 
 export default function ProjectsPage() {
@@ -14,8 +15,9 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Projects" }]} />
           <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
             Projects
           </p>

@@ -4,6 +4,7 @@ import ImpactCard from "@/components/ImpactCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
+import Breadcrumb from "@/components/Breadcrumb";
 import { volunteerNG, communityLeadership } from "@/content/impact";
 
 export const metadata: Metadata = {
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 export default function ImpactPage() {
   return (
     <>
-      <section className="bg-navy-950/80 -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
+      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Leadership & Social Impact" }]} />
           <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
             Leadership & Social Impact
           </p>
