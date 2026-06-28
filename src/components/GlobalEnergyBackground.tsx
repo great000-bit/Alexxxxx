@@ -1,27 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 
 /**
- * Homepage-only fluid energy video background. Per direct correction, this is no longer
- * global — it previously rendered on every page via a flat CSS gradient that read as "a
- * green base colour," which is exactly what was rejected. Internal pages now get a plain
- * #000000 background instead (see globals.css body rule).
+ * Homepage-only fluid energy video background. Scoped to "/" via usePathname().
+ * Internal pages get plain #000000 from globals.css body rule.
  *
- * Scoped to "/" via usePathname() here, in this component, rather than restructuring the
- * route tree into (home)/(other) groups — keeps the change small and contained to
- * exactly what needs to differ, without touching every other page's file.
- *
- * Video asset: copied directly from the Creative Emman Limited site's own source repo
- * (great000-bit/emman-engineered, public/video/hero-bg.mp4) — the live site itself is
- * blocked by this sandbox's network egress allowlist, but the person owns both projects
- * and explicitly asked to reuse this asset if accessible, so it was copied (not
- * hotlinked) into this project's own /public/videos/, transcoded to an additional WebM
- * version locally (ffmpeg, libvpx-vp9) for the WebM-first/MP4-fallback pattern the brief
- * asks for. Real footage of warm gold/amber light moving across a deep navy/black field —
- * genuinely fluid motion, not a static image or a CSS gradient standing in for one.
+ * Video loops continuously with safety handlers:
+ * - onEnded restarts if the native loop attribute fails
+ * - visibilitychange resumes playback when the tab becomes active
+ * - onPause re-attempts play if not reduced-motion and document is visible
  */
 export default function GlobalEnergyBackground() {
   const pathname = usePathname();
@@ -29,18 +19,56 @@ export default function GlobalEnergyBackground() {
   const [hasError, setHasError] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
+  /** Safely call play(), catching the promise rejection browsers may throw. */
+  const safePlay = useCallback((video: HTMLVideoElement) => {
+    const p = video.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => {});
+    }
+  }, []);
+
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || hasError) return;
+
     if (prefersReducedMotion) {
       video.pause();
-    } else if (!hasError) {
-      video.play().catch(() => {
-        // Autoplay can still be blocked by some browsers/extensions even when muted;
-        // the static fallback frame underneath is enough — no further action needed.
-      });
+      return;
     }
-  }, [prefersReducedMotion, hasError]);
+
+    // Initial play
+    safePlay(video);
+
+    // Safety: if "ended" fires despite loop attribute, restart
+    const handleEnded = () => {
+      video.currentTime = 0;
+      safePlay(video);
+    };
+
+    // Safety: if browser pauses unexpectedly, resume when tab is visible
+    const handlePause = () => {
+      if (!prefersReducedMotion && document.visibilityState === "visible") {
+        safePlay(video);
+      }
+    };
+
+    // Resume on tab re-focus
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible" && video.paused && !prefersReducedMotion) {
+        safePlay(video);
+      }
+    };
+
+    video.addEventListener("ended", handleEnded);
+    video.addEventListener("pause", handlePause);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("pause", handlePause);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [prefersReducedMotion, hasError, safePlay]);
 
   if (pathname !== "/") return null;
 
@@ -48,9 +76,7 @@ export default function GlobalEnergyBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Static fallback frame — a still taken from the same footage's opening moment,
-          used only when the video can't play (missing/errored) or reduced-motion is on.
-          This is a last resort per the brief, not the default state. */}
+      {/* Static fallback, visible only when video cannot play */}
       <div
         className="absolute inset-0 transition-opacity duration-500"
         style={{
@@ -66,6 +92,7 @@ export default function GlobalEnergyBackground() {
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: showFallback ? 0 : 1 }}
+          autoPlay
           muted
           loop
           playsInline
@@ -77,9 +104,7 @@ export default function GlobalEnergyBackground() {
         </video>
       )}
 
-      {/* Dark overlay for readability — per direct correction, NOT a green/emerald tint.
-          rgba(3,8,18,*) is a near-black navy, matching the brief's exact suggested
-          overlay values. */}
+      {/* Dark overlay for readability */}
       <div className="absolute inset-0" style={{ backgroundColor: "rgba(3,8,18,0.50)" }} />
     </div>
   );

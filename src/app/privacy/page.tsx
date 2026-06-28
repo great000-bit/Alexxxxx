@@ -26,8 +26,8 @@ export default function PrivacyPage() {
             data is stored, used, and protected.
           </p>
           <p>
-            Information submitted through the contact form — name, email address, organisation, role, and
-            message content — is used solely to respond to enquiries and is not shared with third parties.
+            Information submitted through the contact form (name, email address, organisation, role, and
+            message content) is used solely to respond to enquiries and is not shared with third parties.
           </p>
           <p>
             For questions about this policy, contact Alexander directly via the contact page.

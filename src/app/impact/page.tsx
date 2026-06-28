@@ -42,8 +42,8 @@ export default function ImpactPage() {
             <ScrollReveal direction="left">
               <SectionHeading eyebrow="Main Feature" title={`${volunteerNG.role}, ${volunteerNG.organisation}`} />
               <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
-                Alexander believes technical expertise and community impact reinforce each other &mdash;
-                sustainable energy transition depends not only on sound research and policy, but on the
+                Alexander believes technical expertise and community impact reinforce each other.
+                Sustainable energy transition depends not only on sound research and policy, but on the
                 people, partnerships, and trust built along the way.
               </p>
             </ScrollReveal>

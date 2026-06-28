@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
     title: "Energy Security and Sustainability",
     category: "Energy Policy",
     excerpt:
-      "How energy security considerations intersect with — and sometimes complicate — sustainability ambitions.",
+      "How energy security considerations intersect with, and sometimes complicate, sustainability ambitions.",
     readingTime: "5 min read",
     isPlaceholder: true,
   },

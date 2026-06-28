@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Life cycle assessment methodology applied across UK-relevant blue hydrogen production pathways, with sensitivity analysis on key variables affecting environmental performance.",
     insights: [
       "Environmental performance is highly sensitive to carbon capture rate and upstream methane leakage assumptions.",
-      "Pathway-level analysis is necessary — treating blue hydrogen as a single category obscures meaningful performance differences.",
+      "Pathway-level analysis is necessary. Treating blue hydrogen as a single category obscures meaningful performance differences.",
     ],
   },
   {
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     approach:
       "Life cycle and sustainability assessment of renewable diesel pathways, with attention to feedstock sourcing and broader sustainability implications.",
     insights: [
-      "Feedstock sourcing materially affects the sustainability case for renewable diesel — headline emissions figures alone are an incomplete picture.",
+      "Feedstock sourcing materially affects the sustainability case for renewable diesel. Headline emissions figures alone are an incomplete picture.",
     ],
   },
   {
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     overview:
       "Research into stakeholder perceptions of hydrogen mobility and the factors influencing adoption.",
     problem:
-      "Hydrogen mobility adoption depends on more than technical feasibility — stakeholder perception and trust play a significant, under-examined role.",
+      "Hydrogen mobility adoption depends on more than technical feasibility. Stakeholder perception and trust play a significant, under-examined role.",
     approach:
       "Stakeholder perception research examining the factors that influence trust in and adoption of hydrogen mobility solutions.",
     insights: [

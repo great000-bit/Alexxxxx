@@ -78,7 +78,7 @@ export default function Home() {
                   className="font-[family-name:var(--font-heading)] text-xl leading-snug"
                   style={{ color: "#f8fafc" }}
                 >
-                  &ldquo;Sustainable energy transition depends on evidence, not assumption &mdash;
+                  &ldquo;Sustainable energy transition depends on evidence, not assumption:
                   research and policy analysis that organisations can actually act on.&rdquo;
                 </p>
                 <div className="mt-6 pt-6 grid grid-cols-2 gap-4" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
@@ -241,7 +241,7 @@ export default function Home() {
                 title={`${volunteerNG.role}, ${volunteerNG.organisation}`}
               />
               <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
-                Alexander combines technical expertise with people-focused leadership &mdash;
+                Alexander combines technical expertise with people-focused leadership,
                 supporting diaspora fundraising, education, and community development through
                 VolunteerNG.
               </p>

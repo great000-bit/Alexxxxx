@@ -30,7 +30,7 @@ export default function ExpertisePage() {
             Technical and advisory expertise
           </h1>
           <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
-            Where Alexander&apos;s expertise can create value — across hydrogen, net-zero strategy, life
+            Where Alexander&apos;s expertise can create value: across hydrogen, net-zero strategy, life
             cycle assessment, value chain analysis, and energy policy.
           </p>
         </div>

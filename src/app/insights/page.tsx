@@ -42,7 +42,7 @@ export default function InsightsPage() {
             ))}
           </div>
           <p className="mt-8 text-sm italic" style={{ color: "#64748b" }}>
-            These are upcoming article topics — full pieces will be published here.
+            These are upcoming article topics. Full pieces will be published here.
           </p>
         </div>
       </section>

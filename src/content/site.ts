@@ -24,11 +24,11 @@ export const bio = {
     "Alexander Oburoh is a Sustainability and Energy Systems Analyst specialising in hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy. He recently completed a PhD at Robert Gordon University focused on the role of blue hydrogen in enabling the UK's net-zero transition.",
   full: [
     "Alexander Oburoh is a Sustainability and Energy Systems Analyst specialising in hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy. He recently completed a PhD at Robert Gordon University focused on the role of blue hydrogen in enabling the UK's net-zero transition.",
-    "His work spans research, consulting, stakeholder engagement, sustainability strategy, and industrial decarbonisation — translating technical analysis into evidence-based insight for organisations navigating the energy transition.",
+    "His work spans research, consulting, stakeholder engagement, sustainability strategy, and industrial decarbonisation, translating technical analysis into evidence-based insight for organisations navigating the energy transition.",
     "Alongside his technical expertise, Alexander serves as a Trustee and Operations Leader within VolunteerNG, supporting education and community development initiatives through diaspora engagement and sustainable social impact.",
   ],
   beyondResearch:
-    "Beyond his technical work, Alexander is passionate about education, mentorship, entrepreneurship, and community development — empowering people alongside technology and policy.",
+    "Beyond his technical work, Alexander is passionate about education, mentorship, entrepreneurship, and community development, empowering people alongside technology and policy.",
 } as const;
 
 export const credentials = [

@@ -44,7 +44,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     shortDescription:
       "Mapping stakeholders, dependencies, risks, and optimisation opportunities across complex value chains.",
     description:
-      "Value chain analysis identifies where risk, dependency, and opportunity sit across a system — work that underpins sound strategy for hydrogen, industrial, and energy value chains.",
+      "Value chain analysis identifies where risk, dependency, and opportunity sit across a system. This work underpins sound strategy for hydrogen, industrial, and energy value chains.",
     canHelpWith: [
       "Stakeholder mapping",
       "Dependency and risk analysis",
@@ -81,7 +81,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     shortDescription:
       "Carbon management, net-zero planning, sustainability reporting, and decarbonisation thinking for organisations.",
     description:
-      "Net-zero planning translates ambition into a credible pathway — combining carbon management, sustainability reporting, and decarbonisation strategy specific to an organisation's context.",
+      "Net-zero planning translates ambition into a credible pathway, combining carbon management, sustainability reporting, and decarbonisation strategy specific to an organisation's context.",
     canHelpWith: [
       "Net-zero pathway development",
       "Carbon management planning",
@@ -156,7 +156,7 @@ export const expertiseAreas: ExpertiseArea[] = [
     shortDescription:
       "Engaging stakeholders across research, policy, industry, and community contexts.",
     description:
-      "Stakeholder engagement work draws on experience across research, policy, industrial, and community contexts — understanding perspectives and building consensus around complex topics.",
+      "Stakeholder engagement work draws on experience across research, policy, industrial, and community contexts, building consensus and aligning perspectives around complex topics.",
     canHelpWith: [
       "Stakeholder mapping and analysis",
       "Engagement strategy",

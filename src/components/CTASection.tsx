@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 type CTASectionProps = {
-  heading: string;
+  heading?: string;
   description?: string;
   primaryLabel?: string;
   primaryHref?: string;
@@ -11,76 +12,63 @@ type CTASectionProps = {
 };
 
 /**
- * Unified premium CTA band — dark glass panel with strong heading, short paragraph,
- * white primary button, glass secondary button. Fades into surrounding section via
- * the section-fade class. Matches the company website CTA style with Alexander's colours.
+ * Premium CTA band matching the company website style: open centered layout,
+ * large bold headline, supporting text, two clean buttons. No enclosing card or
+ * glass box. Calm, spacious, consultant-grade feel.
  */
 export default function CTASection({
-  heading,
-  description = "Whether it's a consulting enquiry, research collaboration, or speaking invitation — let's connect.",
+  heading = "Let\u2019s discuss energy transition, sustainability, or research collaboration.",
+  description = "For consulting, research collaboration, speaking, or advisory enquiries, share the context, timeline, and the support you need.",
   primaryLabel = "Get in Touch",
   primaryHref = "/contact",
-  secondaryLabel = "Explore Projects",
-  secondaryHref = "/projects",
+  secondaryLabel = "Explore Research",
+  secondaryHref = "/research",
 }: CTASectionProps) {
   return (
-    <section className="py-20 lg:py-28">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+    <section className="relative py-28 lg:py-36 overflow-hidden">
+      {/* Subtle decorative side elements */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 h-[60%] w-px opacity-[0.06]" style={{ background: "linear-gradient(to bottom, transparent, #5ac8a7, transparent)" }} aria-hidden="true" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 h-[60%] w-px opacity-[0.06]" style={{ background: "linear-gradient(to bottom, transparent, #5ac8a7, transparent)" }} aria-hidden="true" />
+
+      <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <ScrollReveal>
-          <div
-            className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center"
-            style={{
-              backgroundColor: "rgba(7,18,32,0.65)",
-              backdropFilter: "blur(24px) saturate(135%)",
-              WebkitBackdropFilter: "blur(24px) saturate(135%)",
-              border: "1px solid rgba(255,255,255,0.10)",
-              boxShadow: "0 32px 100px rgba(0,0,0,0.3)",
-            }}
+          <h2
+            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight"
+            style={{ color: "#f8fafc" }}
           >
-            {/* Subtle ambient glow */}
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] blur-3xl opacity-20 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, rgba(90,200,167,0.5) 0%, transparent 70%)" }}
-              aria-hidden="true"
-            />
+            {heading}
+          </h2>
+          <p
+            className="mt-6 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
+            style={{ color: "#94a3b8" }}
+          >
+            {description}
+          </p>
 
-            <h2
-              className="relative font-[family-name:var(--font-heading)] text-2xl sm:text-3xl lg:text-4xl font-bold mb-5 max-w-2xl mx-auto"
-              style={{ color: "#f8fafc" }}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            {/* Primary: white bg, deep navy text */}
+            <Link
+              href={primaryHref}
+              className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-sm font-semibold transition-[transform,box-shadow,color] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.16)] hover:text-[#0e6b57]"
+              style={{ backgroundColor: "#ffffff", color: "#071a2d" }}
             >
-              {heading}
-            </h2>
-            <p
-              className="relative text-base leading-relaxed mb-9 max-w-lg mx-auto"
-              style={{ color: "#94a3b8" }}
+              {primaryLabel}
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+
+            {/* Secondary: glass outline */}
+            <Link
+              href={secondaryHref}
+              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-semibold transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.42)] hover:shadow-[0_0_24px_rgba(90,200,167,0.16)]"
+              style={{
+                backgroundColor: "rgba(255,255,255,0.055)",
+                border: "1px solid rgba(229,231,235,0.18)",
+                backdropFilter: "blur(16px)",
+                color: "#ffffff",
+              }}
             >
-              {description}
-            </p>
-
-            <div className="relative flex flex-wrap items-center justify-center gap-4">
-              {/* Primary: white bg, deep navy text */}
-              <Link
-                href={primaryHref}
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-[transform,box-shadow,color] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.16)] hover:text-[#0e6b57]"
-                style={{ backgroundColor: "#ffffff", color: "#071a2d" }}
-              >
-                {primaryLabel}
-                <span aria-hidden="true">→</span>
-              </Link>
-
-              {/* Secondary: glass */}
-              <Link
-                href={secondaryHref}
-                className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold border border-[rgba(255,255,255,0.16)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.42)] hover:shadow-[0_0_24px_rgba(90,200,167,0.16)]"
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.075)",
-                  backdropFilter: "blur(16px)",
-                  color: "#f8fafc",
-                }}
-              >
-                {secondaryLabel}
-              </Link>
-            </div>
+              {secondaryLabel}
+            </Link>
           </div>
         </ScrollReveal>
       </div>

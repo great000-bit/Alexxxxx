@@ -76,7 +76,7 @@ export default function ResearchPage() {
                 </h2>
                 <p className="text-sm leading-relaxed" style={{ color: "#cbd5e1" }}>
                   Alexander&apos;s PhD at Robert Gordon University examined the role blue hydrogen could play
-                  in enabling the UK&apos;s net-zero transition — work that underpins much of his current
+                  in enabling the UK&apos;s net-zero transition, work that underpins much of his current
                   hydrogen strategy and policy advisory.
                 </p>
               </GlassCard>

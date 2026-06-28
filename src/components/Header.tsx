@@ -37,11 +37,12 @@ export default function Header() {
   // strong/opaque." Exact rgba values from the brief; saturate(140%) keeps colour behind
   // the glass looking rich rather than washed out, which plain blur alone tends to do.
   const navSurfaceStyle = {
-    backgroundColor: isScrolled ? "rgba(5,8,12,0.62)" : "rgba(5,8,12,0.42)",
-    backdropFilter: "blur(22px) saturate(140%)",
-    WebkitBackdropFilter: "blur(22px) saturate(140%)",
-    border: "1px solid rgba(255,255,255,0.10)",
-    transition: "background-color 200ms ease-out",
+    backgroundColor: isScrolled ? "rgba(5,8,12,0.72)" : "rgba(5,8,12,0.58)",
+    backdropFilter: isScrolled ? "blur(34px) saturate(170%)" : "blur(30px) saturate(160%)",
+    WebkitBackdropFilter: isScrolled ? "blur(34px) saturate(170%)" : "blur(30px) saturate(160%)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    boxShadow: "0 18px 60px rgba(0,0,0,0.28)",
+    transition: "background-color 200ms ease-out, backdrop-filter 200ms ease-out",
   };
 
   return (
