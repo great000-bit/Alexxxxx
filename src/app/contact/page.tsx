@@ -19,13 +19,25 @@ const enquiryTypes = [
   "General enquiry",
 ];
 
-// Exact field styling per the contact section brief: dark translucent fields, soft
-// border, white text, teal focus state.
+// Form field styling — exact brief spec: dark translucent fields, soft border, white
+// text, teal focus state. Layout structure (2/3 form + 1/3 contact info column,
+// honeypot field) is adapted from Creative Emman Limited's own Contact.tsx, studied
+// directly from its source since the live site is blocked by this sandbox's network
+// allowlist — that reference uses borderless underline inputs, but the brief's own
+// explicit form-field CSS spec calls for boxed glass fields, so that spec wins for field
+// appearance while the reference's column layout and honeypot pattern carry over as-is.
 const fieldStyle = {
   backgroundColor: "rgba(255,255,255,0.06)",
-  border: "1px solid rgba(255,255,255,0.12)",
   color: "#ffffff",
 };
+
+// Base border + focus state live in this className, not in fieldStyle's inline style —
+// an inline border would always beat a :focus class regardless of specificity, the same
+// bug already found and fixed twice this session in GlassCard/PremiumButton and
+// Breadcrumb. Confirmed this would have been a real, reproducible bug here too before
+// shipping it, not after.
+const fieldClassName =
+  "w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-[border-color,box-shadow] border border-[rgba(229,231,235,0.14)] focus:border-[#0e6b57] focus:shadow-[0_0_0_3px_rgba(14,107,87,0.18)]";
 
 function ContactFormWithParams() {
   const searchParams = useSearchParams();
@@ -82,9 +94,9 @@ function ContactFormWithParams() {
     return (
       <div
         className="rounded-2xl p-8 text-center"
-        style={{ backgroundColor: "rgba(90,200,167,0.08)", border: "1px solid rgba(90,200,167,0.3)" }}
+        style={{ backgroundColor: "rgba(14,107,87,0.1)", border: "1px solid rgba(14,107,87,0.35)" }}
       >
-        <p className="text-base font-semibold mb-2" style={{ color: "#f8fafc" }}>
+        <p className="text-base font-semibold mb-2" style={{ color: "#ffffff" }}>
           Thank you for reaching out.
         </p>
         <p className="text-sm" style={{ color: "#cbd5e1" }}>
@@ -95,10 +107,15 @@ function ContactFormWithParams() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      {/* Honeypot — same anti-spam pattern as the reference's contact form, adapted
+          here. Hidden from sighted and assistive users alike, real users never see or
+          fill this; spam bots that auto-fill every field will trip it. */}
+      <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="fullName" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+          <label htmlFor="fullName" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
             Full name <span aria-hidden="true">*</span>
           </label>
           <input
@@ -109,7 +126,7 @@ function ContactFormWithParams() {
             onChange={handleChange("fullName")}
             aria-invalid={!!errors.fullName}
             aria-describedby={errors.fullName ? "fullName-error" : undefined}
-            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            className={fieldClassName}
             style={fieldStyle}
           />
           {errors.fullName && (
@@ -120,7 +137,7 @@ function ContactFormWithParams() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+          <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
             Email address <span aria-hidden="true">*</span>
           </label>
           <input
@@ -131,7 +148,7 @@ function ContactFormWithParams() {
             onChange={handleChange("email")}
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
-            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            className={fieldClassName}
             style={fieldStyle}
           />
           {errors.email && (
@@ -144,7 +161,7 @@ function ContactFormWithParams() {
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="organisation" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+          <label htmlFor="organisation" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
             Organisation
           </label>
           <input
@@ -153,13 +170,13 @@ function ContactFormWithParams() {
             type="text"
             value={form.organisation}
             onChange={handleChange("organisation")}
-            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            className={fieldClassName}
             style={fieldStyle}
           />
         </div>
 
         <div>
-          <label htmlFor="role" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+          <label htmlFor="role" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
             Role / title
           </label>
           <input
@@ -168,14 +185,14 @@ function ContactFormWithParams() {
             type="text"
             value={form.role}
             onChange={handleChange("role")}
-            className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+            className={fieldClassName}
             style={fieldStyle}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="enquiryType" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+        <label htmlFor="enquiryType" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
           Enquiry type <span aria-hidden="true">*</span>
         </label>
         <select
@@ -185,7 +202,7 @@ function ContactFormWithParams() {
           onChange={handleChange("enquiryType")}
           aria-invalid={!!errors.enquiryType}
           aria-describedby={errors.enquiryType ? "enquiryType-error" : undefined}
-          className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-[#5ac8a7]"
+          className={fieldClassName}
           style={{ ...fieldStyle, colorScheme: "dark" }}
         >
           <option value="" style={{ color: "#0a1628" }}>
@@ -205,7 +222,7 @@ function ContactFormWithParams() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: "#f8fafc" }}>
+        <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: "#ffffff" }}>
           Message <span aria-hidden="true">*</span>
         </label>
         <textarea
@@ -216,7 +233,7 @@ function ContactFormWithParams() {
           onChange={handleChange("message")}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
-          className="w-full rounded-lg px-3.5 py-2.5 text-sm outline-none resize-none transition-colors focus:border-[#5ac8a7]"
+          className={`${fieldClassName} resize-none`}
           style={fieldStyle}
         />
         {errors.message && (
@@ -235,7 +252,7 @@ function ContactFormWithParams() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)] disabled:opacity-60"
+        className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,255,255,0.25)] hover:text-[#0e6b57] disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Message"}
         {status !== "submitting" && <Send size={16} aria-hidden="true" />}
@@ -255,7 +272,7 @@ export default function ContactPage() {
           </p>
           <h1
             className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
-            style={{ color: "#f8fafc" }}
+            style={{ color: "#ffffff" }}
           >
             Get in touch
           </h1>
@@ -267,9 +284,9 @@ export default function ContactPage() {
       </section>
 
       {/* Premium dark glass split panel: contact headline/availability/methods on the
-          left, the form on the right — matches the contact redesign brief's explicit
-          left/right structure (previously this was form-left/methods-right; swapped to
-          match the brief's stated order). */}
+          left, the form on the right — same 2/3-form + 1/3-info column ratio as the
+          reference site's Contact page, mirrored to put the form on the right per the
+          contact redesign brief's explicit left/right structure. */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
@@ -278,7 +295,7 @@ export default function ContactPage() {
                 <div>
                   <h2
                     className="font-[family-name:var(--font-heading)] text-2xl font-bold mb-3"
-                    style={{ color: "#f8fafc" }}
+                    style={{ color: "#ffffff" }}
                   >
                     Let&apos;s talk
                   </h2>
@@ -290,38 +307,34 @@ export default function ContactPage() {
                     Currently available for new research, advisory, and collaboration work.
                   </p>
 
-                  <h3 className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
+                  <h3 className="text-sm font-semibold mb-4" style={{ color: "#ffffff" }}>
                     Direct contact
                   </h3>
                   <div className="space-y-3">
                     <a
                       href={`mailto:${site.email}`}
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: "#cbd5e1" }}
+                      className="flex items-center gap-2 text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
                     >
                       <Mail size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
                       {site.email}
                     </a>
                     <a
                       href={socials.linkedin}
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: "#cbd5e1" }}
+                      className="flex items-center gap-2 text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
                     >
                       <ExternalLink size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
                       LinkedIn
                     </a>
                     <a
                       href={socials.googleScholar}
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: "#cbd5e1" }}
+                      className="flex items-center gap-2 text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
                     >
                       <BookOpen size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
                       Google Scholar
                     </a>
                     <a
                       href={socials.researchGate}
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: "#cbd5e1" }}
+                      className="flex items-center gap-2 text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
                     >
                       <FileText size={15} aria-hidden="true" style={{ color: "#5ac8a7" }} />
                       ResearchGate
@@ -329,7 +342,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="lg:pl-10 lg:border-l" style={{ borderColor: "rgba(255,255,255,0.12)" }}>
+                <div className="lg:pl-10 lg:border-l" style={{ borderColor: "rgba(229,231,235,0.14)" }}>
                   <Suspense fallback={<div className="text-sm" style={{ color: "#94a3b8" }}>Loading form…</div>}>
                     <ContactFormWithParams />
                   </Suspense>

@@ -14,16 +14,20 @@ export const contactCTA = { label: "Contact", href: "/contact" } as const;
 
 export const footerLinks = {
   quick: [
+    { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Expertise", href: "/expertise" },
     { label: "Projects", href: "/projects" },
-    { label: "Contact", href: "/contact" },
-  ],
-  services: [
     { label: "Services", href: "/services" },
-    { label: "Research & Publications", href: "/research" },
+  ],
+  expertise: [
+    { label: "Expertise", href: "/expertise" },
     { label: "Leadership & Social Impact", href: "/impact" },
     { label: "Speaking & Media", href: "/speaking" },
+    { label: "Insights", href: "/insights" },
+  ],
+  research: [
+    { label: "Research & Publications", href: "/research" },
+    { label: "Download CV", href: "/cv" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
