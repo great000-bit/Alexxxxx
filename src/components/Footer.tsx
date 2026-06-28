@@ -3,24 +3,22 @@ import { Mail, ExternalLink, BookOpen, FileText, ArrowUpRight } from "lucide-rea
 import { footerLinks } from "@/content/navigation";
 import { site, socials } from "@/content/site";
 
-/**
- * Footer structure adapted from Creative Emman Limited's own Footer.tsx (studied
- * directly from its source, since the live site is blocked by this sandbox's network
- * allowlist) — same rhythm: a large rounded CTA pill centered at the top, a 4-column
- * info grid below it, a soft oversized background wordmark, then a thin divider and
- * copyright line. Content and colours are entirely Alexander's; the reference's blue-
- * glow gradient CTA pill is replaced with the same white/navy primary button used
- * everywhere else on this site, per the brief's explicit colour-system restriction.
- */
 export default function Footer() {
   return (
-    <footer className="relative bg-black overflow-hidden">
+    <footer className="relative overflow-hidden" style={{ backgroundColor: "#030812" }}>
+      {/* Soft fade-in top edge instead of hard border */}
+      <div
+        className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, #000000 0%, transparent 100%)" }}
+        aria-hidden="true"
+      />
+
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         {/* Large rounded CTA pill, top-center */}
-        <div className="pt-16 sm:pt-20 pb-12 sm:pb-16 flex flex-col items-center text-center">
+        <div className="pt-20 sm:pt-24 pb-14 sm:pb-18 flex flex-col items-center text-center">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-white px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-semibold text-navy-950 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,255,255,0.25)]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-white px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-semibold text-navy-950 transition-[transform,box-shadow,color] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,255,255,0.25)] hover:text-[#0e6b57]"
           >
             Let&apos;s Start a Conversation
             <ArrowUpRight
@@ -32,7 +30,7 @@ export default function Footer() {
         </div>
 
         {/* Info grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 pb-12 sm:pb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 pb-14 sm:pb-18">
           <div>
             <span className="flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.06] border border-white/15 mb-4">
               <span className="font-[family-name:var(--font-heading)] text-sm font-bold" style={{ color: "#5ac8a7" }}>
@@ -42,8 +40,11 @@ export default function Footer() {
             <p className="font-[family-name:var(--font-logo)] text-lg font-bold mb-1.5" style={{ color: "#ffffff" }}>
               Dr. {site.shortTitle}
             </p>
+            <p className="text-sm mb-1" style={{ color: "#cbd5e1" }}>
+              Sustainability &amp; Energy Systems Analyst
+            </p>
             <p className="text-sm mb-3" style={{ color: "#94a3b8" }}>
-              {site.professionalTitle}
+              Hydrogen &amp; Net Zero Consultant
             </p>
             <p className="text-sm leading-relaxed max-w-xs" style={{ color: "#94a3b8" }}>
               {site.footerStatement}
@@ -51,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <h4 className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: "#ffffff" }}>
               Quick Links
             </h4>
             <nav className="flex flex-col gap-3">
@@ -59,7 +60,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
+                  className="text-sm transition-colors [color:#94a3b8] hover:[color:#5ac8a7]"
                 >
                   {link.label}
                 </Link>
@@ -68,7 +69,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <h4 className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: "#ffffff" }}>
               Expertise
             </h4>
             <nav className="flex flex-col gap-3">
@@ -76,7 +77,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm transition-colors [color:#cbd5e1] hover:[color:#5ac8a7]"
+                  className="text-sm transition-colors [color:#94a3b8] hover:[color:#5ac8a7]"
                 >
                   {link.label}
                 </Link>
@@ -85,10 +86,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <h4 className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: "#ffffff" }}>
               Research &amp; Connect
             </h4>
-            <div className="flex flex-col gap-3 text-sm [color:#cbd5e1]">
+            <div className="flex flex-col gap-3 text-sm [color:#94a3b8]">
               {footerLinks.research.map((link) => (
                 <Link key={link.href} href={link.href} className="transition-colors hover:[color:#5ac8a7]">
                   {link.label}
@@ -101,7 +102,7 @@ export default function Footer() {
                 <Mail size={14} className="flex-shrink-0" aria-hidden="true" />
                 <span className="break-all">{site.email}</span>
               </a>
-              <div className="flex gap-4 mt-2">
+              <div className="flex gap-4 mt-3">
                 <a href={socials.linkedin} aria-label="LinkedIn profile" className="transition-colors hover:[color:#5ac8a7]">
                   <ExternalLink size={16} aria-hidden="true" />
                 </a>
@@ -116,10 +117,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Large soft brand wordmark, low in the footer — purely decorative, hidden from
-            the a11y tree. Sized in vw (not a fixed/clamped px size) so the full name
-            reads cleanly within the container at any viewport width without the risk of
-            rendering wider than the box and being cropped into illegible fragments. */}
+        {/* Large soft brand wordmark */}
         <div
           aria-hidden="true"
           className="relative w-full overflow-hidden select-none pointer-events-none flex justify-center"
@@ -127,26 +125,30 @@ export default function Footer() {
         >
           <span
             className="font-[family-name:var(--font-logo)] absolute top-1/2 whitespace-nowrap font-bold leading-none"
-            style={{ fontSize: "6vw", transform: "translateY(-38%)", color: "rgba(255,255,255,0.06)" }}
+            style={{ fontSize: "6vw", transform: "translateY(-38%)", color: "rgba(255,255,255,0.04)" }}
           >
             Dr. Alexander Oburoh
           </span>
         </div>
 
-        {/* Accent divider + copyright */}
-        <div
-          className="pb-8 pt-6 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-xs text-center"
-          style={{ borderTop: "1px solid rgba(229,231,235,0.14)", color: "rgba(255,255,255,0.4)" }}
-        >
-          <p>
-            © {new Date().getFullYear()} {site.shortTitle}. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            {footerLinks.legal.map((link) => (
-              <Link key={link.href} href={link.href} className="transition-colors hover:[color:#5ac8a7]">
-                {link.label}
-              </Link>
-            ))}
+        {/* Subtle divider + copyright — soft gradient line instead of hard border */}
+        <div className="relative">
+          <div
+            className="absolute top-0 left-[10%] right-[10%] h-px"
+            style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent)" }}
+            aria-hidden="true"
+          />
+          <div className="pb-8 pt-6 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-xs text-center" style={{ color: "rgba(255,255,255,0.35)" }}>
+            <p>
+              © {new Date().getFullYear()} {site.shortTitle}. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              {footerLinks.legal.map((link) => (
+                <Link key={link.href} href={link.href} className="transition-colors hover:[color:#5ac8a7]">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

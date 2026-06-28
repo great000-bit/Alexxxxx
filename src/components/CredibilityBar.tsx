@@ -4,11 +4,9 @@ import { credentialMarqueeItems } from "@/content/site";
 export default function CredibilityBar() {
   return (
     <section
-      className="py-6"
+      className="py-6 marquee-fade-mask"
       style={{
-        backgroundColor: "rgba(255,255,255,0.045)",
-        borderTop: "1px solid rgba(255,255,255,0.10)",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        backgroundColor: "rgba(255,255,255,0.03)",
         backdropFilter: "blur(16px)",
       }}
     >

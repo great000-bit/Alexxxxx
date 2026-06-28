@@ -37,7 +37,7 @@ const fieldStyle = {
 // Breadcrumb. Confirmed this would have been a real, reproducible bug here too before
 // shipping it, not after.
 const fieldClassName =
-  "w-full rounded-lg px-3.5 py-2.5 text-sm outline-none transition-[border-color,box-shadow] border border-[rgba(229,231,235,0.14)] focus:border-[#0e6b57] focus:shadow-[0_0_0_3px_rgba(14,107,87,0.18)]";
+  "w-full rounded-xl px-4 py-3 text-sm outline-none transition-[border-color,box-shadow] border border-[rgba(229,231,235,0.14)] focus:border-[#0e6b57] focus:shadow-[0_0_0_3px_rgba(14,107,87,0.18)] placeholder:text-[#94a3b8]";
 
 function ContactFormWithParams() {
   const searchParams = useSearchParams();
@@ -264,8 +264,8 @@ function ContactFormWithParams() {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <section className="bg-black -mt-24 pt-40 pb-8 lg:pt-44 lg:pb-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
           <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
             Contact
@@ -287,7 +287,7 @@ export default function ContactPage() {
           left, the form on the right — same 2/3-form + 1/3-info column ratio as the
           reference site's Contact page, mirrored to put the form on the right per the
           contact redesign brief's explicit left/right structure. */}
-      <section className="py-20 lg:py-28">
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <GlassCard className="p-8 sm:p-12">

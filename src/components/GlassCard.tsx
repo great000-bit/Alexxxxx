@@ -34,11 +34,11 @@ export default function GlassCard({
 }: GlassCardProps) {
   return (
     <Component
-      className={`group relative rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.22)] transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(90,200,167,0.18),0_24px_80px_rgba(0,0,0,0.22)] ${className}`}
+      className={`group relative rounded-3xl shadow-[0_24px_80px_rgba(0,0,0,0.22)] transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(90,200,167,0.18),0_24px_80px_rgba(0,0,0,0.22)] ${className}`}
       style={{
-        backgroundColor: "rgba(7,18,32,0.58)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
+        backgroundColor: "rgba(255,255,255,0.055)",
+        backdropFilter: "blur(20px) saturate(135%)",
+        WebkitBackdropFilter: "blur(20px) saturate(135%)",
         border: "1px solid rgba(255,255,255,0.12)",
         // Spread last so a caller-provided style (e.g. ProjectCard's featured border
         // override) merges with — rather than silently replacing — the base glass
@@ -60,7 +60,7 @@ export default function GlassCard({
           background. */}
       <span
         aria-hidden="true"
-        className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100"
+        className="absolute inset-0 rounded-3xl pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100"
         style={{
           padding: "1px",
           background: "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%)",
@@ -71,7 +71,7 @@ export default function GlassCard({
       />
       <span
         aria-hidden="true"
-        className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           padding: "1px",
           background: "linear-gradient(135deg, rgba(90,200,167,0.5) 0%, transparent 60%)",

@@ -8,6 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
 import PremiumButton from "@/components/PremiumButton";
 import Breadcrumb from "@/components/Breadcrumb";
+import HexImageMask from "@/components/HexImageMask";
 import { bio, credentials } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -51,30 +52,27 @@ const focusAreas = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-black -mt-24 pt-40 pb-16 lg:pt-44 lg:pb-20">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      {/* Page header */}
+      <section className="bg-black -mt-24 pt-40 pb-8 lg:pt-44 lg:pb-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
-          <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
-            About
-          </p>
-          <h1
-            className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-4"
-            style={{ color: "#f8fafc" }}
-          >
-            About Alexander Oburoh
-          </h1>
-          <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
-            Sustainability and energy systems analyst focused on hydrogen, net-zero transition, research,
-            policy, and sustainable impact.
-          </p>
         </div>
       </section>
 
-      {/* Professional bio */}
-      <section className="py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <ScrollReveal>
-            <GlassCard className="p-8 sm:p-10">
+      {/* Editorial split: bio text left, hex image mask right */}
+      <section className="section-fade py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-20 items-start">
+            <ScrollReveal direction="left">
+              <p className="text-sm font-semibold mb-3" style={{ color: "#5ac8a7" }}>
+                About
+              </p>
+              <h1
+                className="font-[family-name:var(--font-heading)] text-3xl sm:text-4xl font-bold mb-6"
+                style={{ color: "#f8fafc" }}
+              >
+                About Alexander Oburoh
+              </h1>
               <div className="space-y-5">
                 {bio.full.map((paragraph) => (
                   <p key={paragraph.slice(0, 30)} className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
@@ -82,13 +80,62 @@ export default function AboutPage() {
                   </p>
                 ))}
               </div>
-            </GlassCard>
-          </ScrollReveal>
+
+              {/* Focus area pills */}
+              <div className="mt-8 flex flex-wrap gap-2.5">
+                {focusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="text-xs font-medium px-3.5 py-1.5 rounded-full"
+                    style={{ backgroundColor: "rgba(255,255,255,0.07)", color: "#cbd5e1", border: "1px solid rgba(255,255,255,0.10)" }}
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+
+              {/* Quick stats */}
+              <div className="mt-8 grid grid-cols-3 gap-4">
+                <div>
+                  <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: "#5ac8a7" }}>
+                    PhD
+                  </p>
+                  <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>
+                    Robert Gordon University
+                  </p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: "#5ac8a7" }}>
+                    PRINCE2
+                  </p>
+                  <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>
+                    Certified PM
+                  </p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-heading)] text-2xl font-bold" style={{ color: "#5ac8a7" }}>
+                    6+
+                  </p>
+                  <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>
+                    Focus areas
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Hex image mask on the right */}
+            <ScrollReveal direction="right" delayMs={200}>
+              <div className="lg:pt-12">
+                {/* TODO: Pass imageSrc="/images/alexander-oburoh.jpg" once a real photo is provided */}
+                <HexImageMask />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* Career / research journey — vertical timeline, glass card per entry */}
-      <section className="py-20 lg:py-24">
+      {/* Career / research journey — vertical timeline */}
+      <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Journey" title="Career & research journey" />
@@ -118,28 +165,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Areas of focus */}
-      <section className="py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <ScrollReveal>
-            <SectionHeading eyebrow="Focus" title="Areas of focus" />
-            <div className="mt-8 flex flex-wrap gap-3">
-              {focusAreas.map((area) => (
-                <span
-                  key={area}
-                  className="text-sm font-medium px-4 py-2 rounded-full"
-                  style={{ backgroundColor: "rgba(255,255,255,0.08)", color: "#cbd5e1", border: "1px solid rgba(255,255,255,0.12)" }}
-                >
-                  {area}
-                </span>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Credentials */}
-      <section className="py-20 lg:py-24">
+      {/* Credentials — 2-col grid */}
+      <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Credentials" title="Credentials" />
@@ -155,7 +182,7 @@ export default function AboutPage() {
       </section>
 
       {/* Beyond research */}
-      <section className="py-20 lg:py-24">
+      <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Beyond Research" title="Beyond the technical work" />

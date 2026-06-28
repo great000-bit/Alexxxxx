@@ -50,9 +50,8 @@ export default function Home() {
       <Hero />
       <CredibilityBar />
 
-      {/* About / Positioning — editorial split: heading + intro on the left, a glass
-          quote-style card with the core positioning statement on the right. */}
-      <section className="py-20 lg:py-28">
+      {/* About / Positioning — editorial split */}
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
             <ScrollReveal direction="left">
@@ -106,28 +105,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What Alexander helps with — four glass cards in a row */}
-      <section className="py-20 lg:py-28">
+      {/* What Alexander helps with — bento-style: first card wide, rest standard */}
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="How I Help" title="What Alexander helps with" align="center" />
           </ScrollReveal>
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {helpsWith.map((item, i) => (
-              <ScrollReveal key={item.title} delayMs={i * 100}>
-                <GlassCard className="p-6 h-full">
+              <ScrollReveal key={item.title} delayMs={i * 100} className={i === 0 ? "sm:col-span-2 lg:col-span-2" : ""}>
+                <GlassCard className={`p-7 h-full ${i === 0 ? "lg:flex lg:items-start lg:gap-6" : ""}`}>
                   <span
                     className="font-[family-name:var(--font-heading)] text-sm font-semibold"
                     style={{ color: "#5ac8a7" }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-3 text-sm font-semibold mb-2" style={{ color: "#f8fafc" }}>
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-                    {item.description}
-                  </p>
+                  <div className={i === 0 ? "mt-2 lg:mt-0" : ""}>
+                    <h3 className="mt-3 text-base font-semibold mb-2" style={{ color: "#f8fafc" }}>
+                      {item.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                      {item.description}
+                    </p>
+                  </div>
                 </GlassCard>
               </ScrollReveal>
             ))}
@@ -135,9 +136,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured expertise — bento grid: first card spans 2 columns, rest are single,
-          deliberately uneven sizing rather than a uniform grid. */}
-      <section className="py-20 lg:py-28">
+      {/* Featured expertise — bento grid */}
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -171,7 +171,7 @@ export default function Home() {
       </section>
 
       {/* Featured projects — one large featured card, four smaller supporting cards */}
-      <section className="py-20 lg:py-28">
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* Research & publications preview */}
-      <section className="py-20 lg:py-28">
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -231,8 +231,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Leadership & social impact preview — split: story left, stat cards right */}
-      <section className="py-20 lg:py-28">
+      {/* Leadership & social impact — editorial split */}
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal direction="left">
@@ -271,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* Speaking & media preview */}
-      <section className="py-20 lg:py-28">
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <GlassCard className="p-10 text-center">
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* Insights preview */}
-      <section className="py-20 lg:py-28">
+      <section className="section-fade py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
