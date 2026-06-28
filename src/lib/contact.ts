@@ -8,7 +8,7 @@ export type ContactFormPayload = {
   fullName: string;
   email: string;
   organisation: string;
-  role: string;
+  role?: string;
   enquiryType: string;
   message: string;
 };

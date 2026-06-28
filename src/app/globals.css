@@ -110,34 +110,6 @@
   }
 }
 
-/* Premium section fade transitions — soft gradient edges between sections instead of
-   hard horizontal lines. Applied via .section-fade class on <section> elements. */
-.section-fade {
-  position: relative;
-}
-.section-fade::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-.section-fade::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* Marquee left/right fade edges */
 .marquee-fade-mask {
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);

@@ -51,7 +51,7 @@ export default function Home() {
       <CredibilityBar />
 
       {/* About / Positioning — editorial split */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
             <ScrollReveal direction="left">
@@ -106,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* What Alexander helps with — bento-style: first card wide, rest standard */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="How I Help" title="What Alexander helps with" align="center" />
@@ -137,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Featured expertise — bento grid */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -171,7 +171,7 @@ export default function Home() {
       </section>
 
       {/* Featured projects — one large featured card, four smaller supporting cards */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* Research & publications preview */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -232,7 +232,7 @@ export default function Home() {
       </section>
 
       {/* Leadership & social impact — editorial split */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal direction="left">
@@ -271,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* Speaking & media preview */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <GlassCard className="p-10 text-center">
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* Insights preview */}
-      <section className="section-fade py-20 lg:py-28">
+      <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-wrap items-end justify-between gap-4 mb-12">

@@ -1,22 +1,16 @@
+import Image from "next/image";
+
 /**
- * Hexagonal image mask cluster — inspired by the Figma "Hexagonal Shape Collection"
- * reference screenshot. Uses CSS clip-path polygon for each hexagon cell. When a real
- * photo is provided, it clips inside the hexagon cells automatically.
- *
- * Layout: one large center hexagon with 5 smaller supporting hexagons arranged in a
- * honeycomb pattern. Glass border treatment around the mask area. Placeholder shows
- * the AO monogram until a real image is supplied.
- *
- * TODO: Replace imageSrc default with "/images/alexander-oburoh.jpg" once provided.
+ * Hexagonal image mask cluster — honeycomb composition using CSS clip-path polygons.
+ * One large center hexagon + 5 smaller supporting hexagons. Each cell shows a different
+ * crop of Alexander's portrait via object-position.
  */
 
 type HexImageMaskProps = {
-  /** Path to the image. Defaults to null (shows placeholder). */
-  imageSrc?: string | null;
+  imageSrc?: string;
   alt?: string;
 };
 
-// Pointy-top hexagon clip path
 const hexClip = "polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)";
 
 type HexCell = {
@@ -24,28 +18,29 @@ type HexCell = {
   y: number;
   w: number;
   h: number;
-  /** Background position for the shared image, so each cell shows a different crop */
-  bgPos: string;
+  /** object-position for each cell's crop of the portrait */
+  objPos: string;
 };
 
-// Honeycomb arrangement: 1 large center hex + 5 smaller surrounding hexagons
-// Coordinates are percentages within the 540x432 container (matching Figma dimensions)
 const cells: HexCell[] = [
   // Large center hex
-  { x: 28, y: 18, w: 44, h: 55, bgPos: "50% 40%" },
+  { x: 28, y: 18, w: 44, h: 55, objPos: "50% 15%" },
   // Top-left
-  { x: 2, y: 4, w: 28, h: 35, bgPos: "20% 20%" },
+  { x: 2, y: 4, w: 28, h: 35, objPos: "40% 10%" },
   // Top-right
-  { x: 70, y: 4, w: 28, h: 35, bgPos: "80% 20%" },
+  { x: 70, y: 4, w: 28, h: 35, objPos: "60% 10%" },
   // Bottom-left
-  { x: 2, y: 55, w: 28, h: 35, bgPos: "20% 80%" },
+  { x: 2, y: 55, w: 28, h: 35, objPos: "35% 50%" },
   // Bottom-right
-  { x: 70, y: 55, w: 28, h: 35, bgPos: "80% 80%" },
+  { x: 70, y: 55, w: 28, h: 35, objPos: "65% 40%" },
   // Bottom-center
-  { x: 36, y: 68, w: 28, h: 35, bgPos: "50% 90%" },
+  { x: 36, y: 68, w: 28, h: 35, objPos: "50% 60%" },
 ];
 
-export default function HexImageMask({ imageSrc = null, alt = "Alexander Oburoh" }: HexImageMaskProps) {
+export default function HexImageMask({
+  imageSrc = "/images/alexander-oburoh.jpg",
+  alt = "Dr. Alexander Oburoh",
+}: HexImageMaskProps) {
   return (
     <div
       className="relative w-full max-w-[480px] mx-auto lg:mx-0 lg:ml-auto"
@@ -53,21 +48,11 @@ export default function HexImageMask({ imageSrc = null, alt = "Alexander Oburoh"
       role="img"
       aria-label={alt}
     >
-      {/* Subtle glass border frame behind the cluster */}
-      <div
-        className="absolute inset-[-6px] rounded-3xl"
-        style={{
-          background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          backdropFilter: "blur(8px)",
-        }}
-      />
-
       {/* Hexagon cells */}
       {cells.map((cell, i) => (
         <div
           key={i}
-          className="absolute transition-transform duration-500 hover:scale-105"
+          className="absolute overflow-hidden transition-transform duration-500 hover:scale-[1.03]"
           style={{
             left: `${cell.x}%`,
             top: `${cell.y}%`,
@@ -76,33 +61,15 @@ export default function HexImageMask({ imageSrc = null, alt = "Alexander Oburoh"
             clipPath: hexClip,
           }}
         >
-          {imageSrc ? (
-            <div
-              className="w-full h-full"
-              style={{
-                backgroundImage: `url(${imageSrc})`,
-                backgroundSize: "480px auto",
-                backgroundPosition: cell.bgPos,
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          ) : (
-            /* Placeholder — glass cells with subtle teal tint */
-            <div
-              className="w-full h-full flex items-center justify-center"
-              style={{
-                backgroundColor: i === 0 ? "rgba(14,107,87,0.2)" : "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              {i === 0 && (
-                <span className="font-[family-name:var(--font-heading)] text-4xl font-bold text-emerald-300/60">
-                  AO
-                </span>
-              )}
-            </div>
-          )}
-          {/* Inner glass edge per cell */}
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-cover"
+            style={{ objectPosition: cell.objPos }}
+            sizes="240px"
+          />
+          {/* Subtle inner border overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -113,9 +80,9 @@ export default function HexImageMask({ imageSrc = null, alt = "Alexander Oburoh"
         </div>
       ))}
 
-      {/* Ambient glow behind the cluster */}
+      {/* Ambient glow */}
       <div
-        className="absolute inset-0 -z-10 blur-3xl opacity-30"
+        className="absolute inset-0 -z-10 blur-3xl opacity-20 pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, rgba(14,107,87,0.4) 0%, transparent 70%)",
         }}

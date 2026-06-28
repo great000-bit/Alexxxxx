@@ -60,7 +60,7 @@ export default function AboutPage() {
       </section>
 
       {/* Editorial split: bio text left, hex image mask right */}
-      <section className="section-fade py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-20 items-start">
             <ScrollReveal direction="left">
@@ -135,7 +135,7 @@ export default function AboutPage() {
       </section>
 
       {/* Career / research journey — vertical timeline */}
-      <section className="section-fade py-20 lg:py-24">
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Journey" title="Career & research journey" />
@@ -166,7 +166,7 @@ export default function AboutPage() {
       </section>
 
       {/* Credentials — 2-col grid */}
-      <section className="section-fade py-20 lg:py-24">
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Credentials" title="Credentials" />
@@ -182,7 +182,7 @@ export default function AboutPage() {
       </section>
 
       {/* Beyond research */}
-      <section className="section-fade py-20 lg:py-24">
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
             <SectionHeading eyebrow="Beyond Research" title="Beyond the technical work" />
