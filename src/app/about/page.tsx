@@ -207,37 +207,56 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Continue the conversation — premium CTA block replacing the old button-only box */}
+      {/* Continue the conversation — image itself is the CTA container/background */}
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <div
-              className="relative overflow-hidden rounded-[32px] p-8 sm:p-12"
-              style={{
-                background: "linear-gradient(135deg, #0c1f33 0%, #050505 100%)",
-                border: "1px solid rgba(255,255,255,0.10)",
-                boxShadow: "0 24px 80px rgba(0,0,0,0.28)",
-              }}
-            >
-              {/* Restrained ambient accent — not a neon glow, just a soft light source */}
-              <div
-                aria-hidden="true"
-                className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none"
-                style={{
-                  background: "radial-gradient(circle, rgba(14,107,87,0.20) 0%, transparent 70%)",
-                  filter: "blur(4px)",
-                }}
+            <div className="group relative overflow-hidden rounded-[32px] min-h-[360px] sm:min-h-[400px]">
+              <Image
+                src="/images/alexander-oburoh-speaking.jpg"
+                alt="Dr. Alexander Oburoh speaking at the Canadian Hydrogen Convention"
+                fill
+                className="object-cover object-center transition-[transform,opacity] duration-500 group-hover:scale-[1.03] group-hover:opacity-70"
+                sizes="(max-width: 768px) 100vw, 896px"
               />
 
-              <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              {/* Subtle default overlay for text readability */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 transition-colors duration-500 group-hover:bg-black/55"
+                style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
+              />
+
+              {/* Frosted-glass effect on hover only */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 backdrop-blur-0 transition-[backdrop-filter] duration-500 group-hover:backdrop-blur-[6px]"
+              />
+
+              {/* Restrained emerald glow ring on hover — not neon */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[32px] pointer-events-none transition-[box-shadow] duration-500"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)" }}
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[32px] pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(90,200,167,0.35)" }}
+              />
+
+              <div className="relative z-10 h-full p-8 sm:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
                 <div className="max-w-md">
                   <h3
                     className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl font-bold mb-3"
-                    style={{ color: "#ffffff" }}
+                    style={{ color: "#ffffff", textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
                   >
                     Continue the conversation
                   </h3>
-                  <p className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                  <p
+                    className="text-base leading-relaxed"
+                    style={{ color: "#e5e7eb", textShadow: "0 1px 8px rgba(0,0,0,0.35)" }}
+                  >
                     Access Alexander&apos;s CV or start a conversation about sustainability, hydrogen,
                     net-zero strategy, or research collaboration.
                   </p>
@@ -250,19 +269,19 @@ export default function AboutPage() {
                   <a
                     href="/cv/alexander-oburoh-cv.pdf"
                     download="Alexander-Oburoh-CV.pdf"
-                    className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.16)]"
+                    className="group/btn inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5"
                     style={{ backgroundColor: "#ffffff", color: "#071a2d" }}
                   >
-                    <Download size={16} aria-hidden="true" className="transition-colors duration-200 group-hover:text-[#0e6b57]" />
-                    <span className="transition-colors duration-200 group-hover:text-[#0e6b57]">Download CV</span>
+                    <Download size={16} aria-hidden="true" className="transition-colors duration-200 group-hover/btn:text-[#0e6b57]" />
+                    <span className="transition-colors duration-200 group-hover/btn:text-[#0e6b57]">Download CV</span>
                   </a>
 
                   <Link
                     href="/contact"
-                    className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.42)] hover:shadow-[0_0_24px_rgba(90,200,167,0.16)]"
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.45)]"
                     style={{
-                      backgroundColor: "rgba(255,255,255,0.065)",
-                      border: "1px solid rgba(229,231,235,0.16)",
+                      backgroundColor: "rgba(255,255,255,0.12)",
+                      border: "1px solid rgba(255,255,255,0.24)",
                       color: "#ffffff",
                       backdropFilter: "blur(16px)",
                       WebkitBackdropFilter: "blur(16px)",
@@ -270,7 +289,7 @@ export default function AboutPage() {
                   >
                     <Mail size={16} aria-hidden="true" />
                     Contact Alexander
-                    <ArrowUpRight size={14} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight size={14} aria-hidden="true" />
                   </Link>
                 </div>
               </div>
