@@ -1,7 +1,7 @@
 export default function CredentialCard({ title, detail }: { title: string; detail: string }) {
   return (
     <div
-      className="rounded-xl p-5"
+      className="h-full rounded-xl p-5 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(90,200,167,0.14)]"
       style={{
         backgroundColor: "rgba(7,18,32,0.5)",
         backdropFilter: "blur(16px)",

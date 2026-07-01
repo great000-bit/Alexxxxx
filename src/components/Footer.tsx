@@ -5,7 +5,7 @@ import { site, socials } from "@/content/site";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ backgroundColor: "#030812" }}>
+    <footer className="relative overflow-hidden">
       {/* Soft fade-in top edge instead of hard border */}
       <div
         className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
@@ -103,13 +103,31 @@ export default function Footer() {
                 <span className="break-all">{site.email}</span>
               </a>
               <div className="flex gap-4 mt-3">
-                <a href={socials.linkedin} aria-label="LinkedIn profile" className="transition-colors hover:[color:#5ac8a7]">
+                <a
+                  href={socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile (opens in a new tab)"
+                  className="transition-colors hover:[color:#5ac8a7]"
+                >
                   <ExternalLink size={16} aria-hidden="true" />
                 </a>
-                <a href={socials.googleScholar} aria-label="Google Scholar profile" className="transition-colors hover:[color:#5ac8a7]">
+                <a
+                  href={socials.googleScholar}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Google Scholar profile (opens in a new tab)"
+                  className="transition-colors hover:[color:#5ac8a7]"
+                >
                   <BookOpen size={16} aria-hidden="true" />
                 </a>
-                <a href={socials.researchGate} aria-label="ResearchGate profile" className="transition-colors hover:[color:#5ac8a7]">
+                <a
+                  href={socials.medium}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Medium profile (opens in a new tab)"
+                  className="transition-colors hover:[color:#5ac8a7]"
+                >
                   <FileText size={16} aria-hidden="true" />
                 </a>
               </div>

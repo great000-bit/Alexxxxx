@@ -5,7 +5,7 @@ import GlassCard from "./GlassCard";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <GlassCard className="flex flex-col p-6">
+    <GlassCard className="flex flex-col h-full p-6">
       <span className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: "#5ac8a7" }}>
         {post.category}
       </span>

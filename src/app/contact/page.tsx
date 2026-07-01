@@ -304,6 +304,9 @@ export default function ContactPage() {
 
                   <a
                     href={socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn profile (opens in a new tab)"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
@@ -319,6 +322,9 @@ export default function ContactPage() {
 
                   <a
                     href={socials.googleScholar}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Google Scholar profile (opens in a new tab)"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
@@ -332,9 +338,11 @@ export default function ContactPage() {
                     </span>
                   </a>
 
-                  {/* TODO: add real ORCID URL */}
                   <a
-                    href={socials.orcid}
+                    href={socials.medium}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Medium profile (opens in a new tab)"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
@@ -344,22 +352,7 @@ export default function ContactPage() {
                       <FileText size={16} style={{ color: "#cbd5e1" }} />
                     </span>
                     <span className="[color:#cbd5e1] group-hover:[color:#5ac8a7] transition-colors">
-                      ORCID
-                    </span>
-                  </a>
-
-                  <a
-                    href={socials.researchGate}
-                    className="flex items-center gap-3 text-sm transition-colors group"
-                  >
-                    <span
-                      className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
-                      style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}
-                    >
-                      <FileText size={16} style={{ color: "#cbd5e1" }} />
-                    </span>
-                    <span className="[color:#cbd5e1] group-hover:[color:#5ac8a7] transition-colors">
-                      ResearchGate
+                      Medium
                     </span>
                   </a>
                 </div>

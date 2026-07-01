@@ -76,8 +76,7 @@ export const credentialMarqueeItems = [
 ] as const;
 
 export const socials = {
-  linkedin: "TODO-add-linkedin-url",
-  googleScholar: "TODO-add-google-scholar-url",
-  orcid: "TODO-add-orcid-url",
-  researchGate: "TODO-add-researchgate-url",
+  linkedin: "https://www.linkedin.com/in/alexanderoburoh/",
+  googleScholar: "https://scholar.google.com/citations?user=PBVsANgAAAAJ&hl=en",
+  medium: "https://medium.com/@alexander-oburoh",
 } as const;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PublicationCard from "@/components/PublicationCard";
+import ResearchProfilesSection from "@/components/ResearchProfilesSection";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
@@ -17,8 +18,7 @@ export const metadata: Metadata = {
 
 const profileLinks = [
   { label: "Google Scholar", href: socials.googleScholar },
-  { label: "ORCID", href: socials.orcid },
-  { label: "ResearchGate", href: socials.researchGate },
+  { label: "Medium", href: socials.medium },
   { label: "LinkedIn", href: socials.linkedin },
 ];
 
@@ -90,6 +90,9 @@ export default function ResearchPage() {
                     <a
                       key={link.label}
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${link.label} profile (opens in a new tab)`}
                       className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-colors"
                       style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#f8fafc" }}
                     >
@@ -119,6 +122,8 @@ export default function ResearchPage() {
           </div>
         </div>
       </section>
+
+      <ResearchProfilesSection />
 
       <CTASection
         heading="Interested in research collaboration, technical advisory, or policy analysis?"

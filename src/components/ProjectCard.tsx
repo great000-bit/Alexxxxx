@@ -15,7 +15,7 @@ export default function ProjectCard({
     <GlassCard
       as={Link}
       href={`/projects/${project.slug}`}
-      className={`flex flex-col block ${featured ? "p-8 sm:p-10" : "p-6"}`}
+      className={`flex flex-col h-full block ${featured ? "p-8 sm:p-10" : "p-6"}`}
       style={featured ? { border: "1px solid rgba(90,200,167,0.3)" } : { border: "1px solid rgba(255,255,255,0.12)" }}
     >
       <div className="flex flex-wrap gap-2 mb-3">

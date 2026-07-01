@@ -5,7 +5,7 @@ import GlassCard from "./GlassCard";
 
 export default function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
-    <GlassCard className="p-6">
+    <GlassCard className="h-full flex flex-col p-6">
       <span className="font-[family-name:var(--font-heading)] text-sm font-semibold" style={{ color: "#5ac8a7" }}>
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -25,7 +25,7 @@ export default function ServiceCard({ service, index }: { service: Service; inde
       </ul>
       <Link
         href={`/contact?enquiry=consulting&service=${service.slug}`}
-        className="relative z-10 inline-flex items-center gap-1.5 text-sm font-medium"
+        className="relative z-10 mt-auto inline-flex items-center gap-1.5 text-sm font-medium w-fit"
         style={{ color: "#5ac8a7" }}
       >
         Discuss This

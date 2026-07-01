@@ -8,7 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
 import PremiumButton from "@/components/PremiumButton";
 import Breadcrumb from "@/components/Breadcrumb";
-import HexImageMask from "@/components/HexImageMask";
+import Image from "next/image";
 import { bio, credentials } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -123,11 +123,26 @@ export default function AboutPage() {
               </div>
             </ScrollReveal>
 
-            {/* Hex image mask on the right */}
+            {/* Editorial portrait — clean rounded rectangle, no mask/scattered shapes */}
             <ScrollReveal direction="right" delayMs={200}>
               <div className="lg:pt-12">
-                {/* TODO: Pass imageSrc="/images/alexander-oburoh.jpg" once a real photo is provided */}
-                <HexImageMask />
+                <div
+                  className="relative w-full max-w-[480px] mx-auto lg:mx-0 lg:ml-auto overflow-hidden"
+                  style={{
+                    aspectRatio: "4 / 5",
+                    borderRadius: "32px",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    boxShadow: "0 24px 80px rgba(0,0,0,0.28)",
+                  }}
+                >
+                  <Image
+                    src="/images/alexander-oburoh.jpg"
+                    alt="Dr. Alexander Oburoh"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 480px, 40vw"
+                  />
+                </div>
               </div>
             </ScrollReveal>
           </div>

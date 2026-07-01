@@ -9,6 +9,7 @@ import ExpertiseCard from "@/components/ExpertiseCard";
 import ProjectCard from "@/components/ProjectCard";
 import PublicationCard from "@/components/PublicationCard";
 import BlogCard from "@/components/BlogCard";
+import ResearchProfilesSection from "@/components/ResearchProfilesSection";
 import CTASection from "@/components/CTASection";
 import { bio } from "@/content/site";
 import { expertiseAreas } from "@/content/expertise";
@@ -230,6 +231,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ResearchProfilesSection />
 
       {/* Leadership & social impact — editorial split */}
       <section className="py-20 lg:py-28">

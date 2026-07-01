@@ -2,7 +2,7 @@ import GlassCard from "./GlassCard";
 
 export default function ImpactCard({ title, description }: { title: string; description: string }) {
   return (
-    <GlassCard className="p-6">
+    <GlassCard className="h-full p-6">
       <h3 className="text-base font-semibold mb-2" style={{ color: "#f8fafc" }}>
         {title}
       </h3>
