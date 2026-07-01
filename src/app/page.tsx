@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import CredibilityBar from "@/components/CredibilityBar";
@@ -50,6 +51,33 @@ export default function Home() {
     <>
       <Hero />
       <CredibilityBar />
+
+      {/* Mobile-only portrait — homepage mobile/tablet flow only, hidden at lg and up.
+          Desktop keeps its existing hero image; this is a separate, purpose-uploaded
+          image just for the mobile homepage sequence (marquee -> this -> About preview). */}
+      <section className="lg:hidden py-10">
+        <div className="mx-auto max-w-7xl px-6">
+          <ScrollReveal>
+            <div
+              className="relative w-full mx-auto overflow-hidden"
+              style={{
+                maxWidth: "480px",
+                aspectRatio: "3 / 4",
+                borderRadius: "32px",
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
+            >
+              <Image
+                src="/images/alexander-oburoh-mobile.jpg"
+                alt="Dr. Alexander Oburoh"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 480px, 0px"
+              />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* About / Positioning — editorial split */}
       <section className="py-20 lg:py-28">
