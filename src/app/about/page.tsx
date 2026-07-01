@@ -211,37 +211,55 @@ export default function AboutPage() {
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <div className="group relative overflow-hidden rounded-[32px] min-h-[360px] sm:min-h-[400px]">
+            <div className="group relative overflow-hidden rounded-[32px] min-h-[360px] sm:min-h-[400px] shadow-[0_24px_80px_rgba(0,0,0,0.22)] transition-shadow duration-700 hover:shadow-[0_32px_100px_rgba(0,0,0,0.32)]">
               <Image
                 src="/images/alexander-oburoh-speaking.jpg"
                 alt="Dr. Alexander Oburoh speaking at the Canadian Hydrogen Convention"
                 fill
-                className="object-cover object-center transition-[transform,opacity] duration-500 group-hover:scale-[1.03] group-hover:opacity-70"
+                className="object-cover object-center transition-[transform,opacity] duration-700 ease-out group-hover:scale-[1.02] group-hover:opacity-75"
                 sizes="(max-width: 768px) 100vw, 896px"
               />
 
-              {/* Subtle default overlay for text readability */}
+              {/* Subtle default overlay for text readability, darkens slightly on hover */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 transition-colors duration-500 group-hover:bg-black/55"
-                style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
+                className="absolute inset-0 transition-colors duration-700"
+                style={{ backgroundColor: "rgba(0,0,0,0.32)" }}
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                style={{ backgroundColor: "rgba(0,0,0,0.16)" }}
               />
 
               {/* Frosted-glass effect on hover only */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 backdrop-blur-0 transition-[backdrop-filter] duration-500 group-hover:backdrop-blur-[6px]"
+                className="absolute inset-0 backdrop-blur-0 transition-[backdrop-filter] duration-700 group-hover:backdrop-blur-[8px]"
+              />
+
+              {/* Fluid glass sweep — one soft light band, right to left, on hover only */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:[animation:fluid-sweep_1100ms_ease-out_1_forwards]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(90,200,167,0.06) 25%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0) 100%)",
+                  backgroundSize: "60% 100%",
+                  backgroundRepeat: "no-repeat",
+                  filter: "blur(18px)",
+                }}
               />
 
               {/* Restrained emerald glow ring on hover — not neon */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 rounded-[32px] pointer-events-none transition-[box-shadow] duration-500"
+                className="absolute inset-0 rounded-[32px] pointer-events-none transition-[box-shadow] duration-700"
                 style={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)" }}
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 rounded-[32px] pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="absolute inset-0 rounded-[32px] pointer-events-none opacity-0 transition-opacity duration-700 group-hover:opacity-100"
                 style={{ boxShadow: "inset 0 0 0 1px rgba(90,200,167,0.35)" }}
               />
 

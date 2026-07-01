@@ -89,6 +89,29 @@
   }
 }
 
+/* Fluid/glass light sweep for the About page CTA image block — a single soft band that
+   travels right-to-left on hover, fading in and out at the edges of its own timeline so
+   it never looks like a hard stripe. background-position (not transform) is what moves
+   it, since the layer's own size already spans past both edges of the container. Used
+   with animation-fill-mode: forwards so it settles fully faded out if the hover holds
+   past the sweep's one pass, rather than looping. */
+@keyframes fluid-sweep {
+  0% {
+    background-position: 160% 0;
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.85;
+  }
+  86% {
+    opacity: 0.85;
+  }
+  100% {
+    background-position: -60% 0;
+    opacity: 0;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
