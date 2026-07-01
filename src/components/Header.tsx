@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks, contactCTA } from "@/content/navigation";
@@ -10,6 +11,7 @@ import { site } from "@/content/site";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [avatarFailed, setAvatarFailed] = useState(false);
   const pathname = usePathname();
 
   // Close the mobile menu on route change without an effect that calls setState
@@ -56,10 +58,21 @@ export default function Header() {
         >
           {/* Left: avatar + name */}
           <Link href="/" className="flex items-center gap-2.5 min-w-0 flex-shrink-0">
-            <span className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.06] backdrop-blur-sm border border-white/15 flex-shrink-0">
-              <span className="font-[family-name:var(--font-heading)] text-xs font-bold text-emerald-300">
-                AO
-              </span>
+            <span className="relative flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.06] backdrop-blur-sm border border-white/15 flex-shrink-0 overflow-hidden">
+              {avatarFailed ? (
+                <span className="font-[family-name:var(--font-heading)] text-xs font-bold text-emerald-300">
+                  AO
+                </span>
+              ) : (
+                <Image
+                  src="/images/alexander-oburoh.jpg"
+                  alt="Dr. Alexander Oburoh"
+                  fill
+                  className="object-cover object-top"
+                  sizes="36px"
+                  onError={() => setAvatarFailed(true)}
+                />
+              )}
             </span>
             <span className="hidden sm:inline font-[family-name:var(--font-logo)] text-sm font-semibold text-white truncate">
               Dr. {site.shortTitle}
