@@ -6,13 +6,6 @@ import { site, socials } from "@/content/site";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden">
-      {/* Soft fade-in top edge instead of hard border */}
-      <div
-        className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, #000000 0%, transparent 100%)" }}
-        aria-hidden="true"
-      />
-
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         {/* Large rounded CTA pill, top-center */}
         <div className="pt-20 sm:pt-24 pb-14 sm:pb-18 flex flex-col items-center text-center">

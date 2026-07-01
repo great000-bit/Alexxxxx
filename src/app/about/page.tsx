@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, ArrowUpRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import CredentialCard from "@/components/CredentialCard";
 import CTASection from "@/components/CTASection";
 import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
-import PremiumButton from "@/components/PremiumButton";
 import Breadcrumb from "@/components/Breadcrumb";
 import Image from "next/image";
 import { bio, credentials } from "@/content/site";
@@ -208,20 +207,74 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CV CTA */}
+      {/* Continue the conversation — premium CTA block replacing the old button-only box */}
       <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <ScrollReveal>
-            <GlassCard className="p-8 sm:p-10 flex flex-wrap gap-4">
-              <PremiumButton as={Link} href="/cv" variant="primary">
-                <Download size={16} aria-hidden="true" />
-                Download CV
-              </PremiumButton>
-              <PremiumButton as={Link} href="/contact" variant="glass">
-                <Mail size={16} aria-hidden="true" />
-                Contact Alexander
-              </PremiumButton>
-            </GlassCard>
+            <div
+              className="relative overflow-hidden rounded-[32px] p-8 sm:p-12"
+              style={{
+                background: "linear-gradient(135deg, #0c1f33 0%, #050505 100%)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                boxShadow: "0 24px 80px rgba(0,0,0,0.28)",
+              }}
+            >
+              {/* Restrained ambient accent — not a neon glow, just a soft light source */}
+              <div
+                aria-hidden="true"
+                className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none"
+                style={{
+                  background: "radial-gradient(circle, rgba(14,107,87,0.20) 0%, transparent 70%)",
+                  filter: "blur(4px)",
+                }}
+              />
+
+              <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                <div className="max-w-md">
+                  <h3
+                    className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl font-bold mb-3"
+                    style={{ color: "#ffffff" }}
+                  >
+                    Continue the conversation
+                  </h3>
+                  <p className="text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
+                    Access Alexander&apos;s CV or start a conversation about sustainability, hydrogen,
+                    net-zero strategy, or research collaboration.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 flex-shrink-0">
+                  {/* TODO: CV file not uploaded yet — this href/download attribute is wired and
+                      ready. Once /public/cv/alexander-oburoh-cv.pdf exists, this button works with
+                      no further changes needed. */}
+                  <a
+                    href="/cv/alexander-oburoh-cv.pdf"
+                    download="Alexander-Oburoh-CV.pdf"
+                    className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(255,255,255,0.16)]"
+                    style={{ backgroundColor: "#ffffff", color: "#071a2d" }}
+                  >
+                    <Download size={16} aria-hidden="true" className="transition-colors duration-200 group-hover:text-[#0e6b57]" />
+                    <span className="transition-colors duration-200 group-hover:text-[#0e6b57]">Download CV</span>
+                  </a>
+
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.42)] hover:shadow-[0_0_24px_rgba(90,200,167,0.16)]"
+                    style={{
+                      backgroundColor: "rgba(255,255,255,0.065)",
+                      border: "1px solid rgba(229,231,235,0.16)",
+                      color: "#ffffff",
+                      backdropFilter: "blur(16px)",
+                      WebkitBackdropFilter: "blur(16px)",
+                    }}
+                  >
+                    <Mail size={16} aria-hidden="true" />
+                    Contact Alexander
+                    <ArrowUpRight size={14} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
