@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 
 type ResearchProfileCardProps = {
@@ -6,7 +5,7 @@ type ResearchProfileCardProps = {
   description: string;
   ctaLabel: string;
   href: string;
-  icon: LucideIcon;
+  icon: (props: { size?: number; className?: string }) => React.ReactElement;
   /** Which brand-influenced background treatment to use — see brief's per-platform direction. */
   variant: "scholar" | "medium" | "linkedin";
 };
@@ -53,7 +52,7 @@ export default function ResearchProfileCard({
         className="relative inline-flex items-center justify-center w-11 h-11 rounded-2xl flex-shrink-0 mb-5"
         style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.14)" }}
       >
-        <Icon size={20} style={{ color: "#5ac8a7" }} aria-hidden="true" />
+        <Icon size={20} className="[color:#5ac8a7]" />
       </span>
 
       <h3 className="relative font-[family-name:var(--font-heading)] text-lg font-bold mb-2" style={{ color: "#ffffff" }}>

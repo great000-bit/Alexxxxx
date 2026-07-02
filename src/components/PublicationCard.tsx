@@ -12,23 +12,21 @@ export default function PublicationCard({ publication }: { publication: Publicat
         borderLeftWidth: "3px",
       }}
     >
-      <div className="flex items-center justify-between gap-3 mb-2">
+      <div className="mb-2">
         <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#c6a15b" }}>
           {publication.category}
         </span>
-        {publication.isPlaceholder && (
-          <span className="text-xs italic" style={{ color: "#64748b" }}>
-            Placeholder
-          </span>
-        )}
       </div>
       <h3 className="text-sm font-semibold mb-1.5 leading-snug" style={{ color: "#f8fafc" }}>
         {publication.title}
       </h3>
-      <p className="text-xs mt-auto" style={{ color: "#94a3b8" }}>
-        {publication.venue}
-        {publication.year ? ` · ${publication.year}` : ""}
-      </p>
+      {(publication.venue || publication.year) && (
+        <p className="text-xs mt-auto" style={{ color: "#94a3b8" }}>
+          {publication.venue}
+          {publication.venue && publication.year ? " · " : ""}
+          {publication.year ?? ""}
+        </p>
+      )}
     </div>
   );
 }

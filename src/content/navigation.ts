@@ -30,6 +30,6 @@ export const footerLinks = {
     { label: "Download CV", href: "/cv" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ],
 } as const;

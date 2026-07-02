@@ -12,10 +12,10 @@ export type Publication = {
   isPlaceholder: boolean;
 };
 
-// NOTE: No final publication list was provided. These are clearly-marked placeholder
-// entries (isPlaceholder: true) so the section has a real, populated feel rather than an
-// empty state, while making it unambiguous that this is not real bibliographic data.
-// Replace with the real publication list — see TODO at the bottom of this file.
+// NOTE: No final publication list was provided yet. isPlaceholder marks entries whose
+// bibliographic details (journal/conference/venue) are still to be confirmed — this flag
+// is used internally only (e.g. to decide what copy to show) and is never rendered as
+// visible text. Replace these entries with Alexander's real publication list when ready.
 export const publications: Publication[] = [
   {
     title: "PhD Thesis: Blue Hydrogen and the UK Net Zero Transition",
@@ -25,24 +25,24 @@ export const publications: Publication[] = [
     isPlaceholder: true,
   },
   {
-    title: "Placeholder: peer-reviewed journal article on blue hydrogen value chains",
+    title: "Peer-reviewed journal article on blue hydrogen value chains",
     category: "Peer-Reviewed Journal Article",
     year: null,
-    venue: "TODO: add journal name",
+    venue: "",
     isPlaceholder: true,
   },
   {
-    title: "Placeholder: conference paper on hydrogen policy pathways",
+    title: "Conference paper on hydrogen policy pathways",
     category: "Conference Paper",
     year: null,
-    venue: "TODO: add conference name",
+    venue: "",
     isPlaceholder: true,
   },
   {
-    title: "Placeholder: technical report on industrial decarbonisation",
+    title: "Technical report on industrial decarbonisation",
     category: "Technical Report",
     year: null,
-    venue: "TODO: add commissioning body, if applicable",
+    venue: "",
     isPlaceholder: true,
   },
 ];
@@ -58,7 +58,6 @@ export const researchFocusAreas = [
   "Sustainability assessment",
 ] as const;
 
-// TODO: replace this entire file's placeholder entries with Alexander's real publication
-// list (peer-reviewed articles, conference papers, technical reports, white papers) once
-// provided. Keep isPlaceholder: false on real entries so the UI can stop showing the
-// "placeholder" indicator once genuine data is in place.
+// Replace these placeholder entries with Alexander's real publication list (peer-reviewed
+// articles, conference papers, technical reports, white papers) once provided. Set
+// isPlaceholder: false on real entries once genuine data is in place.

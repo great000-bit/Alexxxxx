@@ -1,9 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { Mail, ExternalLink, BookOpen, FileText, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { Mail, ArrowUpRight } from "lucide-react";
 import { footerLinks } from "@/content/navigation";
 import { site, socials } from "@/content/site";
+import { LinkedInIcon, MediumIcon, GoogleScholarIcon } from "@/components/icons/BrandIcons";
 
 export default function Footer() {
+  const [avatarFailed, setAvatarFailed] = useState(false);
   return (
     <footer className="relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
@@ -25,10 +31,21 @@ export default function Footer() {
         {/* Info grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 pb-14 sm:pb-18">
           <div>
-            <span className="flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.06] border border-white/15 mb-4">
-              <span className="font-[family-name:var(--font-heading)] text-sm font-bold" style={{ color: "#5ac8a7" }}>
-                AO
-              </span>
+            <span className="relative flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.06] border border-white/15 mb-4 overflow-hidden">
+              {avatarFailed ? (
+                <span className="font-[family-name:var(--font-heading)] text-sm font-bold" style={{ color: "#5ac8a7" }}>
+                  AO
+                </span>
+              ) : (
+                <Image
+                  src="/images/alexander-oburoh.jpg"
+                  alt="Dr. Alexander Oburoh"
+                  fill
+                  className="object-cover object-top"
+                  sizes="48px"
+                  onError={() => setAvatarFailed(true)}
+                />
+              )}
             </span>
             <p className="font-[family-name:var(--font-logo)] text-lg font-bold mb-1.5" style={{ color: "#ffffff" }}>
               Dr. {site.shortTitle}
@@ -90,6 +107,7 @@ export default function Footer() {
               ))}
               <a
                 href={`mailto:${site.email}`}
+                aria-label="Email Alexander Oburoh"
                 className="flex items-center gap-2 transition-colors break-all hover:[color:#5ac8a7]"
               >
                 <Mail size={14} className="flex-shrink-0" aria-hidden="true" />
@@ -100,28 +118,28 @@ export default function Footer() {
                   href={socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn profile (opens in a new tab)"
+                  aria-label="Open Alexander Oburoh's LinkedIn profile"
                   className="transition-colors hover:[color:#5ac8a7]"
                 >
-                  <ExternalLink size={16} aria-hidden="true" />
+                  <LinkedInIcon size={18} />
                 </a>
                 <a
                   href={socials.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Google Scholar profile (opens in a new tab)"
+                  aria-label="Open Alexander Oburoh's Google Scholar profile"
                   className="transition-colors hover:[color:#5ac8a7]"
                 >
-                  <BookOpen size={16} aria-hidden="true" />
+                  <GoogleScholarIcon size={18} />
                 </a>
                 <a
                   href={socials.medium}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Medium profile (opens in a new tab)"
+                  aria-label="Open Alexander Oburoh's Medium profile"
                   className="transition-colors hover:[color:#5ac8a7]"
                 >
-                  <FileText size={16} aria-hidden="true" />
+                  <MediumIcon size={18} />
                 </a>
               </div>
             </div>

@@ -13,7 +13,7 @@ export const site = {
     "Alexander Oburoh is a Sustainability and Energy Systems Analyst specialising in hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy.",
   // TODO: replace with the real production domain once one is purchased/connected.
   url: "https://alexander-oburoh.vercel.app",
-  email: "TODO-add-email@example.com",
+  email: "hello@alexanderoburoh.com",
   locale: "en_GB",
   footerStatement:
     "Driving sustainable energy transitions through research, policy and innovation.",

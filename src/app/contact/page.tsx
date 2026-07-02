@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Send, Mail, ExternalLink, BookOpen, FileText } from "lucide-react";
+import { Send, Mail } from "lucide-react";
+import { LinkedInIcon, MediumIcon, GoogleScholarIcon } from "@/components/icons/BrandIcons";
 import { submitContactForm } from "@/lib/contact";
 import { site, socials } from "@/content/site";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -289,6 +290,7 @@ export default function ContactPage() {
                 <div className="space-y-5">
                   <a
                     href={`mailto:${site.email}`}
+                    aria-label="Email Alexander Oburoh"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
@@ -306,14 +308,14 @@ export default function ContactPage() {
                     href={socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="LinkedIn profile (opens in a new tab)"
+                    aria-label="Open Alexander Oburoh's LinkedIn profile"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
                       className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
                       style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}
                     >
-                      <ExternalLink size={16} style={{ color: "#cbd5e1" }} />
+                      <LinkedInIcon size={16} className="[color:#cbd5e1]" />
                     </span>
                     <span className="[color:#cbd5e1] group-hover:[color:#5ac8a7] transition-colors">
                       LinkedIn
@@ -324,14 +326,14 @@ export default function ContactPage() {
                     href={socials.googleScholar}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Google Scholar profile (opens in a new tab)"
+                    aria-label="Open Alexander Oburoh's Google Scholar profile"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
                       className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
                       style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}
                     >
-                      <BookOpen size={16} style={{ color: "#cbd5e1" }} />
+                      <GoogleScholarIcon size={16} className="[color:#cbd5e1]" />
                     </span>
                     <span className="[color:#cbd5e1] group-hover:[color:#5ac8a7] transition-colors">
                       Google Scholar
@@ -342,14 +344,14 @@ export default function ContactPage() {
                     href={socials.medium}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Medium profile (opens in a new tab)"
+                    aria-label="Open Alexander Oburoh's Medium profile"
                     className="flex items-center gap-3 text-sm transition-colors group"
                   >
                     <span
                       className="flex items-center justify-center w-10 h-10 rounded-xl flex-shrink-0"
                       style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.10)" }}
                     >
-                      <FileText size={16} style={{ color: "#cbd5e1" }} />
+                      <MediumIcon size={16} className="[color:#cbd5e1]" />
                     </span>
                     <span className="[color:#cbd5e1] group-hover:[color:#5ac8a7] transition-colors">
                       Medium

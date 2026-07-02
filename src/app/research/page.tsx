@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ExternalLink } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import PublicationCard from "@/components/PublicationCard";
 import ResearchProfilesSection from "@/components/ResearchProfilesSection";
@@ -8,19 +7,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GlassCard from "@/components/GlassCard";
 import Breadcrumb from "@/components/Breadcrumb";
 import { publications, researchFocusAreas } from "@/content/publications";
-import { socials } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Research & Publications | Alexander Oburoh",
   description:
     "Research hub covering blue hydrogen, the UK net-zero transition, life cycle assessment, and energy policy.",
 };
-
-const profileLinks = [
-  { label: "Google Scholar", href: socials.googleScholar },
-  { label: "Medium", href: socials.medium },
-  { label: "LinkedIn", href: socials.linkedin },
-];
 
 export default function ResearchPage() {
   return (
@@ -81,27 +73,6 @@ export default function ResearchPage() {
                 </p>
               </GlassCard>
 
-              <div className="mt-10">
-                <p className="text-sm font-semibold mb-4" style={{ color: "#f8fafc" }}>
-                  Research profiles
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {profileLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${link.label} profile (opens in a new tab)`}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-colors"
-                      style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", color: "#f8fafc" }}
-                    >
-                      {link.label}
-                      <ExternalLink size={13} aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
-              </div>
             </ScrollReveal>
 
             <ScrollReveal direction="right" delayMs={120}>
@@ -115,9 +86,6 @@ export default function ResearchPage() {
                   </ScrollReveal>
                 ))}
               </div>
-              <p className="mt-6 text-sm italic" style={{ color: "#64748b" }}>
-                This list will be updated as new publications are confirmed.
-              </p>
             </ScrollReveal>
           </div>
         </div>

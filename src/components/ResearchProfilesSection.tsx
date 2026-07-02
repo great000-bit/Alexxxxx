@@ -1,4 +1,4 @@
-import { GraduationCap, Newspaper, Briefcase } from "lucide-react";
+import { LinkedInIcon, MediumIcon, GoogleScholarIcon } from "./icons/BrandIcons";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 import ResearchProfileCard from "./ResearchProfileCard";
@@ -10,7 +10,7 @@ const profiles = [
     description: "Academic publications, citations, and research profile.",
     ctaLabel: "Open Profile",
     href: socials.googleScholar,
-    icon: GraduationCap,
+    icon: GoogleScholarIcon,
     variant: "scholar" as const,
   },
   {
@@ -18,7 +18,7 @@ const profiles = [
     description: "Writing and commentary on sustainability, hydrogen, and energy transition.",
     ctaLabel: "Read Articles",
     href: socials.medium,
-    icon: Newspaper,
+    icon: MediumIcon,
     variant: "medium" as const,
   },
   {
@@ -26,7 +26,7 @@ const profiles = [
     description: "Professional profile, experience, and network.",
     ctaLabel: "Connect on LinkedIn",
     href: socials.linkedin,
-    icon: Briefcase,
+    icon: LinkedInIcon,
     variant: "linkedin" as const,
   },
 ];
