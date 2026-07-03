@@ -1,7 +1,8 @@
 export const site = {
   name: "Alexander Oburoh",
-  title: "Alexander Oburoh | Sustainability & Hydrogen Consultant",
+  title: "Dr. Alexander Oburoh | Hydrogen & Net Zero Consultant",
   shortTitle: "Alexander Oburoh",
+  ogSiteName: "Dr. Alexander Oburoh",
   professionalTitle:
     "Sustainability & Energy Systems Analyst | Hydrogen & Net Zero Consultant",
   tagline: "Researcher. Consultant. Community Builder.",
@@ -10,9 +11,17 @@ export const site = {
   supportingCopy:
     "Helping organisations navigate hydrogen, sustainability and net-zero challenges through evidence-based analysis, research and strategic insight.",
   description:
-    "Alexander Oburoh is a Sustainability and Energy Systems Analyst specialising in hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy.",
-  // TODO: replace with the real production domain once one is purchased/connected.
-  url: "https://alexander-oburoh.vercel.app",
+    "Dr. Alexander Oburoh is a Sustainability and Energy Systems Analyst focused on hydrogen, net-zero transition, life cycle assessment, carbon management, energy policy, and industrial decarbonisation.",
+  ogDescription:
+    "Research, policy analysis, and strategic advisory across hydrogen, carbon management, life cycle assessment, and net-zero transition.",
+  twitterDescription:
+    "Sustainability and energy systems expertise across hydrogen, carbon management, life cycle assessment, policy, and industrial decarbonisation.",
+  // NOTE: alexanderoburoh.com is the intended production domain per the SEO brief, used
+  // here for metadataBase/canonical/OG/sitemap/schema. As of this change it is not yet
+  // the live deployed domain — see project notes. Once the real domain is purchased and
+  // connected, this continues to be correct with no further changes needed; until then,
+  // canonical/OG URLs and the sitemap will reference a domain that isn't live yet.
+  url: "https://alexanderoburoh.com",
   email: "hello@alexanderoburoh.com",
   locale: "en_GB",
   footerStatement:

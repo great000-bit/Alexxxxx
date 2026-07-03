@@ -11,9 +11,10 @@ import Image from "next/image";
 import { bio, credentials } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "About Alexander Oburoh | Energy Systems & Net Zero Specialist",
+  title: { absolute: "About Dr. Alexander Oburoh | Sustainability & Energy Systems" },
   description:
-    "Sustainability and energy systems analyst focused on hydrogen, net-zero transition, research, policy, and sustainable impact.",
+    "Learn about Dr. Alexander Oburoh's work in hydrogen, net-zero strategy, life cycle assessment, energy policy, sustainability research, and community leadership.",
+  alternates: { canonical: "/about" },
 };
 
 const journey = [
@@ -47,6 +48,47 @@ const focusAreas = [
   "Industrial decarbonisation",
   "Community impact",
 ];
+
+const faqs = [
+  {
+    question: "What does Dr. Alexander Oburoh specialise in?",
+    answer:
+      "Dr. Alexander Oburoh specialises in hydrogen, net-zero transition, life cycle assessment, carbon management, value chain analysis, and energy policy, with a focus on industrial decarbonisation.",
+  },
+  {
+    question: "What is his research focus?",
+    answer:
+      "His research centres on blue hydrogen and the UK's net-zero transition, examined through his PhD at Robert Gordon University, alongside broader work in sustainable energy systems and industrial decarbonisation.",
+  },
+  {
+    question: "Does Alexander Oburoh provide consulting or advisory support?",
+    answer:
+      "Yes. He provides consulting and technical advisory support across hydrogen strategy, sustainability, life cycle assessment, and net-zero planning for organisations navigating the energy transition.",
+  },
+  {
+    question: "How can organisations contact him for research collaboration?",
+    answer:
+      "Organisations can reach out directly via the contact page or by email to discuss research collaboration, consulting, speaking, or advisory enquiries.",
+  },
+  {
+    question: "Where can I find his research profiles?",
+    answer:
+      "His research and professional profiles are linked in the footer and on the Research page, including Google Scholar, Medium, and LinkedIn.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 export default function AboutPage() {
   return (
@@ -136,7 +178,7 @@ export default function AboutPage() {
                 >
                   <Image
                     src="/images/alexander-oburoh.jpg"
-                    alt="Dr. Alexander Oburoh"
+                    alt="Dr. Alexander Oburoh, Hydrogen and Net Zero Consultant"
                     fill
                     className="object-cover object-top"
                     sizes="(max-width: 1024px) 480px, 40vw"
@@ -203,6 +245,31 @@ export default function AboutPage() {
             <p className="mt-5 text-base leading-relaxed" style={{ color: "#cbd5e1" }}>
               {bio.beyondResearch}
             </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Frequently asked questions — GEO/entity clarity + FAQPage schema */}
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+          <ScrollReveal>
+            <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
+            <div className="mt-8 divide-y" style={{ borderColor: "rgba(255,255,255,0.10)" }}>
+              {faqs.map((faq) => (
+                <div key={faq.question} className="py-6 first:pt-0">
+                  <h3 className="text-base font-semibold mb-2" style={{ color: "#f8fafc" }}>
+                    {faq.question}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </ScrollReveal>
         </div>
       </section>

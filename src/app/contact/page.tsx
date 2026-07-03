@@ -6,17 +6,18 @@ import { useSearchParams } from "next/navigation";
 import { Send, Mail } from "lucide-react";
 import { LinkedInIcon, MediumIcon, GoogleScholarIcon } from "@/components/icons/BrandIcons";
 import { submitContactForm } from "@/lib/contact";
+import { playSuccessSound } from "@/lib/playSuccessSound";
+import SuccessModal from "@/components/SuccessModal";
 import { site, socials } from "@/content/site";
 import ScrollReveal from "@/components/ScrollReveal";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const enquiryTypes = [
   "Consulting",
-  "Research collaboration",
-  "Speaking or media",
-  "Job / recruitment opportunity",
-  "Community / VolunteerNG",
-  "General enquiry",
+  "Research Collaboration",
+  "Speaking / Media",
+  "Technical Advisory",
+  "Other",
 ];
 
 const fieldStyle = {
@@ -33,9 +34,9 @@ function ContactFormWithParams() {
 
   const presetMap: Record<string, string> = {
     consulting: "Consulting",
-    speaking: "Speaking or media",
-    research: "Research collaboration",
-    community: "Community / VolunteerNG",
+    speaking: "Speaking / Media",
+    research: "Research Collaboration",
+    community: "Other",
   };
 
   const [form, setForm] = useState({
@@ -47,12 +48,13 @@ function ContactFormWithParams() {
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((f) => ({ ...f, [key]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
     if (!form.fullName.trim()) newErrors.fullName = "Full name is required";
@@ -68,35 +70,31 @@ function ContactFormWithParams() {
     setErrors({});
     setStatus("submitting");
 
-    const { ok } = await submitContactForm(form);
+    // Honeypot — real users never fill this in.
+    const gotcha = (new FormData(e.currentTarget).get("_gotcha") as string) || "";
+
+    const { ok } = await submitContactForm({ ...form, _gotcha: gotcha });
     if (ok) {
       setStatus("success");
       setForm({ fullName: "", email: "", organisation: "", enquiryType: "", message: "" });
+      setShowSuccessModal(true);
+      playSuccessSound();
     } else {
       setStatus("error");
     }
   };
 
-  if (status === "success") {
-    return (
-      <div
-        className="rounded-[14px] p-8 text-center"
-        style={{ backgroundColor: "rgba(14,107,87,0.1)", border: "1px solid rgba(14,107,87,0.35)" }}
-      >
-        <p className="text-base font-semibold mb-2" style={{ color: "#ffffff" }}>
-          Thank you for reaching out.
-        </p>
-        <p className="text-sm" style={{ color: "#cbd5e1" }}>
-          Alexander will respond as soon as possible.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <div
-      className="rounded-[28px] p-6 sm:p-8"
-      style={{
+    <>
+      <SuccessModal
+        open={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+        title="Message sent successfully"
+        message="Thank you. Your message has been sent successfully. Alexander Oburoh will respond to your message soon."
+      />
+      <div
+        className="rounded-[28px] p-6 sm:p-8"
+        style={{
         backgroundColor: "rgba(255,255,255,0.055)",
         backdropFilter: "blur(20px) saturate(135%)",
         WebkitBackdropFilter: "blur(20px) saturate(135%)",
@@ -229,7 +227,11 @@ function ContactFormWithParams() {
 
         {status === "error" && (
           <p className="text-sm" style={{ color: "#f87171" }}>
-            Something went wrong. Please try again or email directly.
+            Something went wrong. Please try again or email{" "}
+            <a href={`mailto:${site.email}`} className="underline" style={{ color: "#f87171" }}>
+              {site.email}
+            </a>{" "}
+            directly.
           </p>
         )}
 
@@ -243,7 +245,8 @@ function ContactFormWithParams() {
           {status !== "submitting" && <Send size={16} aria-hidden="true" />}
         </button>
       </form>
-    </div>
+      </div>
+    </>
   );
 }
 

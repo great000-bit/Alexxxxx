@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Alexander Oburoh",
+  title: { absolute: "Contact Dr. Alexander Oburoh | Research & Advisory Enquiries" },
   description:
-    "Get in touch with Alexander Oburoh for consulting, research collaboration, job opportunities, speaking, or general enquiries.",
+    "Contact Dr. Alexander Oburoh for consulting, research collaboration, speaking, media, technical advisory, and sustainability enquiries.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

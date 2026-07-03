@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/content/site";
 
 export type BreadcrumbItem = {
   label: string;
@@ -14,10 +15,28 @@ export type BreadcrumbItem = {
  *
  * The final item in `items` is treated as the current page — rendered without a link
  * and in the brighter "active" colour, regardless of whether it has an href.
+ *
+ * Also emits a matching BreadcrumbList JSON-LD script so search/answer engines get the
+ * same hierarchy structurally, not just visually.
  */
 export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.label,
+      item: item.href ? `${site.url}${item.href}` : undefined,
+    })),
+  };
+
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <ol
         className="inline-flex items-center gap-2 rounded-full text-xs"
         style={{

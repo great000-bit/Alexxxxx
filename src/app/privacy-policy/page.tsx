@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Alexander Oburoh",
-  description: "Privacy policy for the Alexander Oburoh website.",
+  title: { absolute: "Privacy Policy | Dr. Alexander Oburoh" },
+  description: "Read the privacy policy for the Dr. Alexander Oburoh website.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 const heading2 = "font-[family-name:var(--font-heading)] text-xl sm:text-2xl font-bold mt-12 mb-4 first:mt-0";

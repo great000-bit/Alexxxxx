@@ -1,25 +1,43 @@
-// TODO: No form backend (Formspree endpoint, email service, etc.) was specified in the
-// PRD. This currently logs the submission and simulates success so the UI/UX can be
-// reviewed and the success state can be seen, but no email or notification is actually
-// sent anywhere. Before this goes live, wire this up to a real service — e.g. Formspree
-// (https://formspree.io), Resend (https://resend.com), or a Next.js API route that sends
-// mail via your provider of choice.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xykqlppp";
+
 export type ContactFormPayload = {
   fullName: string;
   email: string;
   organisation: string;
-  role?: string;
   enquiryType: string;
   message: string;
+  /** Honeypot field — should always be empty. If a bot fills it, we quietly no-op. */
+  _gotcha?: string;
 };
 
 export async function submitContactForm(
   payload: ContactFormPayload,
 ): Promise<{ ok: boolean }> {
-  // Simulate network latency so the loading state is visible during review.
-  await new Promise((resolve) => setTimeout(resolve, 600));
+  // Silent honeypot trap: if this hidden field got filled in, it was a bot. Pretend
+  // success without ever hitting the network, so the bot doesn't learn anything either.
+  if (payload._gotcha) {
+    return { ok: true };
+  }
 
-  console.log("[contact form submission — not actually sent anywhere yet]", payload);
+  try {
+    const formData = new FormData();
+    formData.append("name", payload.fullName);
+    formData.append("email", payload.email);
+    formData.append("organisation", payload.organisation);
+    formData.append("enquiryType", payload.enquiryType);
+    formData.append("message", payload.message);
+    formData.append("_subject", "New enquiry from Alexander Oburoh website");
 
-  return { ok: true };
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
+    });
+
+    return { ok: response.ok };
+  } catch {
+    return { ok: false };
+  }
 }

@@ -9,9 +9,10 @@ import { expertiseAreas } from "@/content/expertise";
 import { projects } from "@/content/projects";
 
 export const metadata: Metadata = {
-  title: "Expertise | Hydrogen, Net Zero, LCA & Energy Policy",
+  title: { absolute: "Expertise | Hydrogen, Net Zero & Industrial Decarbonisation" },
   description:
-    "Alexander Oburoh's technical and advisory expertise across hydrogen, net-zero strategy, life cycle assessment, value chain analysis, and energy policy.",
+    "Explore Alexander Oburoh's expertise in hydrogen strategy, carbon management, life cycle assessment, value chain analysis, energy policy, and industrial decarbonisation.",
+  alternates: { canonical: "/expertise" },
 };
 
 export default function ExpertisePage() {

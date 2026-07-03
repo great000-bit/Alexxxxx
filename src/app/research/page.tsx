@@ -9,9 +9,10 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { publications, researchFocusAreas } from "@/content/publications";
 
 export const metadata: Metadata = {
-  title: "Research & Publications | Alexander Oburoh",
+  title: { absolute: "Research | Dr. Alexander Oburoh" },
   description:
-    "Research hub covering blue hydrogen, the UK net-zero transition, life cycle assessment, and energy policy.",
+    "Research outputs, publications, technical reports, and academic work by Dr. Alexander Oburoh on hydrogen, net-zero transition, and sustainable energy systems.",
+  alternates: { canonical: "/research" },
 };
 
 export default function ResearchPage() {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -41,6 +42,13 @@ const helpsWith = [
       "Producing evidence-based insights, technical reports, policy analysis, and research outputs for decision-making.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: { absolute: "Dr. Alexander Oburoh | Hydrogen & Net Zero Consultant" },
+  description:
+    "Sustainability and energy systems expertise across hydrogen, net-zero transition, life cycle assessment, carbon management, energy policy, and industrial decarbonisation.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   const featuredProject = projects[0];
