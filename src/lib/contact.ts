@@ -1,5 +1,3 @@
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xykqlppp";
-
 export type ContactFormPayload = {
   fullName: string;
   email: string;
@@ -20,23 +18,13 @@ export async function submitContactForm(
   }
 
   try {
-    const formData = new FormData();
-    formData.append("name", payload.fullName);
-    formData.append("email", payload.email);
-    formData.append("organisation", payload.organisation);
-    formData.append("enquiryType", payload.enquiryType);
-    formData.append("message", payload.message);
-    formData.append("_subject", "New enquiry from Alexander Oburoh website");
-
-    const response = await fetch(FORMSPREE_ENDPOINT, {
+    const response = await fetch("/api/contact", {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-      },
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
-
-    return { ok: response.ok };
+    const data = await response.json().catch(() => ({ ok: false }));
+    return { ok: response.ok && data.ok === true };
   } catch {
     return { ok: false };
   }
