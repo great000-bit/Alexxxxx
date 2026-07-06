@@ -22,7 +22,7 @@ export const site = {
   // connected, this continues to be correct with no further changes needed; until then,
   // canonical/OG URLs and the sitemap will reference a domain that isn't live yet.
   url: "https://alexanderoburoh.com",
-  email: "hello@alexanderoburoh.com",
+  email: "ao@alexanderoburoh.com",
   locale: "en_GB",
   footerStatement:
     "Driving sustainable energy transitions through research, policy and innovation.",
