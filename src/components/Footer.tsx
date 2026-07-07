@@ -180,6 +180,26 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Developer credit CTA — last element in the footer */}
+        <div className="pb-8 flex justify-center">
+          <a
+            href="https://creative-emman.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact the developer (opens in a new tab)"
+            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[transform,border-color] duration-200 hover:-translate-y-0.5 hover:border-[rgba(14,107,87,0.42)]"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.065)",
+              border: "1px solid rgba(229,231,235,0.16)",
+              color: "#ffffff",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+            }}
+          >
+            Contact Developer
+          </a>
+        </div>
       </div>
     </footer>
   );
